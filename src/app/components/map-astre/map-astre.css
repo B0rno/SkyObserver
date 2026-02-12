@@ -1,0 +1,60 @@
+.map-astre {
+    display: block;
+    background: var(--surface-color, #ffffff);
+    border-radius: 12px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  
+  .map-astre:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  }
+  
+  .map-image {
+    aspect-ratio: 1;
+    background: #f0f0f0;
+    overflow: hidden;
+  }
+  
+  .map-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s;
+  }
+  
+  .map-astre:hover .map-image img {
+    transform: scale(1.05);
+  }
+  
+  .placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    color: #ccc;
+    background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
+  }
+  
+  .map-content {
+    padding: 1rem;
+  }
+  
+  .map-content h3 {
+    margin: 0 0 0.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--heading-color, #1a1a2e);
+  }
+  
+  .map-content p {
+    margin: 0;
+    color: #666;
+    font-size: 0.9rem;
+  }

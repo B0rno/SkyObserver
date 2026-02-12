@@ -1,0 +1,72 @@
+.widget-meteo {
+    background: var(--surface-color, #ffffff);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .widget-meteo h4 {
+    margin: 0 0 1rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #666;
+    letter-spacing: 1px;
+  }
+  
+  .meteo-content {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .meteo-icon {
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .meteo-icon i {
+    font-size: 2rem;
+    color: #f59e0b;
+  }
+  
+  .meteo-info {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .temperature {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--heading-color, #1a1a2e);
+  }
+  
+  .condition {
+    color: #666;
+    font-size: 1rem;
+  }
+  
+  .observation-status {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    background: #fef2f2;
+    color: #dc2626;
+  }
+  
+  .observation-status.bonne {
+    background: #f0fdf4;
+    color: #16a34a;
+  }
+  
+  .observation-status i {
+    font-size: 1rem;
+  }

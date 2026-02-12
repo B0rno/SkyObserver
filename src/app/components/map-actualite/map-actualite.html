@@ -1,1 +1,16 @@
-<p>map-actualite works!</p>
+<div class="post-item position-relative h-100" data-aos="fade-up">
+
+    <div class="post-img position-relative overflow-hidden">
+      <img [src]="image" class="img-fluid" alt="">
+      <span class="post-date">{{ date }}</span>
+    </div>
+  
+    <div class="post-content d-flex flex-column">
+      <h3 class="post-title">{{ titre }}</h3>
+      <a [routerLink]="lien" class="readmore stretched-link">
+        <span>Lire plus</span>
+        <i class="bi bi-arrow-right"></i>
+      </a>
+    </div>
+  
+</div>

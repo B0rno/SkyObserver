@@ -1,1 +1,16 @@
-<p>map-astre works!</p>
+
+<a [routerLink]="['/details-astre', id]" class="map-astre">
+    <div class="map-image">
+      @if (image) {
+        <img [src]="image" [alt]="nom" />
+      } @else {
+        <div class="placeholder">
+          <i class="bi bi-stars"></i>
+        </div>
+      }
+    </div>
+    <div class="map-content">
+      <h3>{{ nom }}</h3>
+      <p>{{ description }}</p>
+    </div>
+  </a>
