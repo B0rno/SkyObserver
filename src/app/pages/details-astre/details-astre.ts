@@ -16,7 +16,7 @@ export class DetailsAstre implements OnInit {
   astre = signal({
     nom: 'Soleil',
     description: 'Le Soleil est l\'étoile du Système solaire. C\'est une étoile naine jaune de 4,6 milliards d\'années.',
-    image: '',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/b/b4/The_Sun_by_the_Atmospheric_Imaging_Assembly_of_NASA%27s_Solar_Dynamics_Observatory_-_20100819.jpg',
     type: 'Étoile',
     distance: '149.6 millions km',
     rayon: '696 340 km',
