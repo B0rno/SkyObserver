@@ -1,1 +1,46 @@
-<p>vue-ciel works!</p>
+<div class="page-vue-ciel">
+    <app-nav-bar />
+  
+    <div class="content">
+      <div class="container">
+        <div class="row g-4">
+          
+          <!-- Grille des astres -->
+          <div class="col-lg-8">
+            <div class="bloc-astres">
+              <h1>À {{ ville() }} vous pouvez observer :</h1>
+              
+              <div class="grille-astres">
+                @for (astre of astresVisibles; track astre.id) {
+                  <app-map-astre 
+                    [id]="astre.id"
+                    [nom]="astre.nom"
+                    [description]="astre.description"
+                    [image]="astre.image"
+                  />
+                }
+              </div>
+            </div>
+          </div>
+  
+          <!-- Sidebar -->
+          <div class="col-lg-4">
+            <div class="sidebar">
+              <app-widget-meteo 
+                [temperature]="meteo.temperature"
+                [condition]="meteo.condition"
+                [icone]="meteo.icone"
+                [bonneCondition]="meteo.bonneCondition"
+              />
+              
+              <button class="btn-sauvegarder" (click)="sauvegarder()">
+                <i class="bi bi-bookmark"></i>
+                Sauvegarder
+              </button>
+            </div>
+          </div>
+  
+        </div>
+      </div>
+    </div>
+  </div>

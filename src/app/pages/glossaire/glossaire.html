@@ -1,1 +1,38 @@
-<p>glossaire works!</p>
+<div class="page-glossaire">
+    <app-nav-bar />
+  
+    <!-- Barre de recherche -->
+    <section class="section-recherche">
+      <div class="search-box">
+        <input 
+          type="text" 
+          [(ngModel)]="recherche"
+          placeholder="Rechercher un Astre"
+        />
+        <i class="bi bi-search"></i>
+      </div>
+    </section>
+  
+    <!-- Grille des astres -->
+    <section class="section-astres">
+      <div class="container">
+        <div class="grille-astres">
+          @for (astre of astresFiltres(); track astre.id) {
+            <app-map-astre 
+              [id]="astre.id"
+              [nom]="astre.nom"
+              [description]="astre.description"
+              [image]="astre.image"
+            />
+          }
+        </div>
+  
+        @if (astresFiltres().length === 0) {
+          <div class="aucun-resultat">
+            <i class="bi bi-search"></i>
+            <p>Aucun astre trouvé pour "{{ recherche }}"</p>
+          </div>
+        }
+      </div>
+    </section>
+  </div>

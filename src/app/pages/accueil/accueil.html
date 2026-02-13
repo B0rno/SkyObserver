@@ -1,0 +1,56 @@
+<div class="page-accueil">
+    <app-nav-bar />
+  
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Localisez-vous !</h1>
+        <p>Découvrez les astres visibles depuis votre position</p>
+        <app-localisation-search (recherche)="onRecherche($event)" />
+      </div>
+    </section>
+  
+    <!-- Section Actualités + Météo -->
+    <section class="section-bottom">
+      <div class="container">
+        <div class="row g-4">
+          
+          <!-- Bloc Actualités -->
+          <div class="col-lg-8">
+            <div class="bloc-actualites">
+              <div class="bloc-header">
+                <h2>DERNIÈRES ACTUS</h2>
+                <a routerLink="/actualites" class="voir-plus">
+                  <i class="bi bi-hexagon"></i>
+                  VOIR PLUS
+                </a>
+              </div>
+              <div class="row g-3">
+                @for (actu of actualites; track actu.id) {
+                  <div class="col-md-6">
+                    <app-map-actualite 
+                      [titre]="actu.titre"
+                      [date]="actu.date"
+                      [image]="actu.image"
+                      [lien]="'/actualites/' + actu.id"
+                    />
+                  </div>
+                }
+              </div>
+            </div>
+          </div>
+  
+          <!-- Bloc Météo -->
+          <div class="col-lg-4">
+            <app-widget-meteo 
+              [temperature]="meteo.temperature"
+              [condition]="meteo.condition"
+              [icone]="meteo.icone"
+              [bonneCondition]="meteo.bonneCondition"
+            />
+          </div>
+  
+        </div>
+      </div>
+    </section>
+  </div>
