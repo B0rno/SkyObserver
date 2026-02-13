@@ -1,0 +1,26 @@
+  <div class="search-container">
+    <form (ngSubmit)="onSubmit()" class="search-box">
+      <input 
+        type="text" 
+        [(ngModel)]="villeRecherche"
+        name="ville"
+        (input)="onInput()"
+        placeholder="Saisir votre ville"
+        autocomplete="off"
+      />
+      <button type="submit">
+        <i class="bi bi-search"></i>
+      </button>
+    </form>
+  
+    @if (suggestions().length > 0) {
+      <ul class="suggestions">
+        @for (ville of suggestions(); track ville) {
+          <li (click)="selectSuggestion(ville)">
+            <i class="bi bi-geo-alt"></i>
+            {{ ville }}
+          </li>
+        }
+      </ul>
+    }
+  </div>

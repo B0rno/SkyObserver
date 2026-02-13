@@ -1,0 +1,25 @@
+<header id="header" class="header d-flex align-items-center fixed-top">
+  <div class="header-container container-fluid container-xl position-relative d-flex align-items-center">
+
+    <a routerLink="/" class="logo d-flex align-items-center">
+      <h1 class="sitename">SkyObserver</h1>
+    </a>
+
+    <nav id="navmenu" class="navmenu mx-auto">
+      <ul class="d-flex list-unstyled mb-0">
+        <li>
+          <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Accueil</a>
+        </li>
+        <li>
+          <a routerLink="/actualites" routerLinkActive="active">Actualités</a>
+        </li>
+        <li>
+          <a routerLink="/glossaire" routerLinkActive="active">Glossaire</a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="logo-spacer"></div>
+
+  </div>
+</header>

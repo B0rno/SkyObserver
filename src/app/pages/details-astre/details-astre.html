@@ -1,0 +1,65 @@
+<div class="page-details-astre">
+    <app-nav-bar />
+  
+    <section class="section-content">
+      <div class="container">
+        
+        <!-- En-tête avec infos de l'astre -->
+        <div class="astre-header">
+          <div class="astre-image">
+            @if (astre().image) {
+              <img [src]="astre().image" [alt]="astre().nom" />
+            } @else {
+              <div class="placeholder">
+                <i class="bi bi-stars"></i>
+              </div>
+            }
+          </div>
+          <div class="astre-infos">
+            <span class="type-badge">{{ astre().type }}</span>
+            <h1>{{ astre().nom }}</h1>
+            <p>{{ astre().description }}</p>
+            <div class="caracteristiques">
+              <div class="carac-item">
+                <span class="label">Distance</span>
+                <span class="valeur">{{ astre().distance }}</span>
+              </div>
+              <div class="carac-item">
+                <span class="label">Rayon</span>
+                <span class="valeur">{{ astre().rayon }}</span>
+              </div>
+              <div class="carac-item">
+                <span class="label">Masse</span>
+                <span class="valeur">{{ astre().masse }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Villes où observable -->
+        <div class="bloc-villes">
+          <h2>{{ astre().nom }} est observable depuis :</h2>
+          <div class="grille-villes">
+            @for (ville of villesObservables(); track ville.nom) {
+              <div class="carte-ville">
+                <div class="ville-image">
+                  @if (ville.image) {
+                    <img [src]="ville.image" [alt]="ville.nom" />
+                  } @else {
+                    <div class="placeholder">
+                      <i class="bi bi-geo-alt"></i>
+                    </div>
+                  }
+                </div>
+                <div class="ville-content">
+                  <h3>{{ ville.nom }}</h3>
+                  <p>{{ ville.description }}</p>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+  
+      </div>
+    </section>
+  </div>
