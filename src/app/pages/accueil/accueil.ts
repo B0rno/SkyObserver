@@ -1,5 +1,5 @@
-import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core'; // Ajoute Inject et PLATFORM_ID
-import { isPlatformBrowser } from '@angular/common'; // Ajoute cet import
+import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { Router } from '@angular/router';
 import { NavBarComponent } from '../../components/nav-bar/nav-bar';
 import { LocalisationSearch } from '../../components/localisation-search/localisation-search';
@@ -16,6 +16,8 @@ import { MeteoService, MeteoData } from '../../services/meteo.service';
 })
 export class Accueil implements OnInit {
 
+  villeActuelle: string = 'Paris';
+
   meteo: MeteoData = {
     temperature: 0,
     condition: 'Chargement...',
@@ -24,52 +26,42 @@ export class Accueil implements OnInit {
   };
 
   actualites = [
-    {
-      id: '1',
-      titre: 'Éclipse lunaire visible ce soir',
-      date: '10 Février',
-      image: 'assets/img/eclipse.webp'
-    },
-    {
-      id: '2',
-      titre: 'Mars au plus proche de la Terre',
-      date: '8 Février',
-      image: 'assets/img/mars.webp'
-    }
+    { id: '1', titre: 'Éclipse lunaire visible ce soir', date: '10 Février', image: 'assets/img/eclipse.webp' },
+    { id: '2', titre: 'Mars au plus proche de la Terre', date: '8 Février', image: 'assets/img/mars.webp' }
   ];
 
   constructor(
     private router: Router,
     private meteoService: MeteoService,
-    @Inject(PLATFORM_ID) private platformId: Object // On injecte l'information sur la plateforme (Serveur ou Navigateur)
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {}
 
   ngOnInit() {
-    // On vérifie si le code s'exécute dans le navigateur !
     if (isPlatformBrowser(this.platformId)) {
-      this.chargerMeteo();
-    } else {
-      // Si on est sur le serveur (SSR), on ne fait rien pour éviter le crash (ETIMEDOUT)
-      console.log('Rendu côté serveur : on attend le navigateur pour la météo.');
+      this.chargerMeteo(this.villeActuelle);
     }
   }
 
-  chargerMeteo() {
-    this.meteoService.getMeteoActuelle().subscribe({
+  chargerMeteo(ville: string) {
+    this.meteo.condition = 'Chargement...';
+
+    this.meteoService.getMeteoParVille(ville).subscribe({
       next: (donneesReelles) => {
         this.meteo = donneesReelles;
+        this.villeActuelle = ville;
       },
       error: (erreur) => {
-        console.error('Erreur lors de la récupération de la météo', erreur);
-        this.meteo.condition = 'Erreur API';
-        this.meteo.icone = 'bi-exclamation-triangle-fill';
+        console.error('Erreur météo', erreur);
+        this.meteo.condition = 'Ville introuvable';
+        this.meteo.icone = 'bi-x-circle';
       }
     });
   }
 
-  onRecherche(ville: string) {
-    this.router.navigate(['/vue-ciel'], {
-      queryParams: { ville: ville }
-    });
+  onRecherche(villeTrouvee: string) {
+    this.chargerMeteo(villeTrouvee);
+
+    // Décommente la ligne suivante si tu souhaites rediriger vers la page vue-ciel après la recherche
+    // this.router.navigate(['/vue-ciel'], { queryParams: { ville: villeTrouvee } });
   }
 }

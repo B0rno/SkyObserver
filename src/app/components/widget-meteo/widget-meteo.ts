@@ -9,6 +9,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './widget-meteo.css',
 })
 export class WidgetMeteo {
+  @Input() ville: string = 'Paris';
   @Input() temperature: number = 20;
   @Input() condition: string = 'Ensoleillé';
   @Input() icone: string = 'bi-sun-fill';
