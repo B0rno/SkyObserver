@@ -1,9 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core'; // Ajoute Inject et PLATFORM_ID
+import { isPlatformBrowser } from '@angular/common'; // Ajoute cet import
 import { Router } from '@angular/router';
 import { NavBarComponent } from '../../components/nav-bar/nav-bar';
 import { LocalisationSearch } from '../../components/localisation-search/localisation-search';
 import { MapActualite } from '../../components/map-actualite/map-actualite';
 import { WidgetMeteo } from '../../components/widget-meteo/widget-meteo';
+import { MeteoService, MeteoData } from '../../services/meteo.service';
 
 @Component({
   selector: 'app-accueil',
@@ -12,17 +14,15 @@ import { WidgetMeteo } from '../../components/widget-meteo/widget-meteo';
   templateUrl: './accueil.html',
   styleUrl: './accueil.css',
 })
+export class Accueil implements OnInit {
 
-export class Accueil {
-  // Données mockées pour la météo
-  meteo = {
-    temperature: 18,
-    condition: 'Ensoleillé',
-    icone: 'bi-sun-fill',
-    bonneCondition: true
+  meteo: MeteoData = {
+    temperature: 0,
+    condition: 'Chargement...',
+    icone: 'bi-hourglass',
+    bonneCondition: false
   };
 
-  // Données mockées pour les actualités
   actualites = [
     {
       id: '1',
@@ -38,7 +38,34 @@ export class Accueil {
     }
   ];
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private meteoService: MeteoService,
+    @Inject(PLATFORM_ID) private platformId: Object // On injecte l'information sur la plateforme (Serveur ou Navigateur)
+  ) {}
+
+  ngOnInit() {
+    // On vérifie si le code s'exécute dans le navigateur !
+    if (isPlatformBrowser(this.platformId)) {
+      this.chargerMeteo();
+    } else {
+      // Si on est sur le serveur (SSR), on ne fait rien pour éviter le crash (ETIMEDOUT)
+      console.log('Rendu côté serveur : on attend le navigateur pour la météo.');
+    }
+  }
+
+  chargerMeteo() {
+    this.meteoService.getMeteoActuelle().subscribe({
+      next: (donneesReelles) => {
+        this.meteo = donneesReelles;
+      },
+      error: (erreur) => {
+        console.error('Erreur lors de la récupération de la météo', erreur);
+        this.meteo.condition = 'Erreur API';
+        this.meteo.icone = 'bi-exclamation-triangle-fill';
+      }
+    });
+  }
 
   onRecherche(ville: string) {
     this.router.navigate(['/vue-ciel'], {
