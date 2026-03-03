@@ -4,13 +4,12 @@
       <img [src]="image" class="img-fluid" alt="">
       <span class="post-date">{{ date }}</span>
     </div>
-  
+
     <div class="post-content d-flex flex-column">
       <h3 class="post-title">{{ titre }}</h3>
-      <a [routerLink]="lien" class="readmore stretched-link">
-        <span>Lire plus</span>
+        <a [href]="lien" target="_blank" rel="noopener noreferrer" class="readmore stretched-link">        <span>Lire plus</span>
         <i class="bi bi-arrow-right"></i>
       </a>
     </div>
-  
+
 </div>

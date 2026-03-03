@@ -45,11 +45,17 @@ export class MeteoService {
   }
 
   private interpreterCodeMeteo(code: number): { texte: string, icone: string, estClair: boolean } {
-    if (code === 0) return { texte: 'Ciel Dégagé', icone: 'bi-sun-fill', estClair: true };
-    if (code >= 1 && code <= 3) return { texte: 'Nuageux', icone: 'bi-cloud-sun-fill', estClair: false };
-    if (code >= 45 && code <= 48) return { texte: 'Brouillard', icone: 'bi-cloud-haze-fill', estClair: false };
-    if (code >= 51 && code <= 67) return { texte: 'Pluie', icone: 'bi-cloud-rain-fill', estClair: false };
-    if (code >= 71 && code <= 77) return { texte: 'Neige', icone: 'bi-cloud-snow-fill', estClair: false };
-    return { texte: 'Orage ou Averses', icone: 'bi-cloud-lightning-fill', estClair: false };
+    if (code === 0)
+      return { texte: 'Ciel Dégagé', icone: 'bi-sun-fill', estClair: true };
+    else if (code >= 1 && code <= 3)
+      return { texte: 'Nuageux', icone: 'bi-cloud-sun-fill', estClair: true };
+    else if (code >= 45 && code <= 48)
+      return { texte: 'Brouillard', icone: 'bi-cloud-haze-fill', estClair: false };
+    else if (code >= 51 && code <= 67)
+      return { texte: 'Pluie', icone: 'bi-cloud-rain-fill', estClair: false };
+    else if (code >= 71 && code <= 77)
+      return { texte: 'Neige', icone: 'bi-cloud-snow-fill', estClair: false };
+    else
+      return { texte: 'Orage ou Averses', icone: 'bi-cloud-lightning-fill', estClair: false };
   }
 }
