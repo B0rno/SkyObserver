@@ -25,7 +25,15 @@ export class ImageNasa {
             return title === normalizedName;
           });
 
-          return match?.links?.[0]?.href || '';
+          if(match?.links?.[0]?.href)
+            return  match.links[0].href;
+
+          const partialMatch = items.find((item: any) => {
+            const title = item.data[0]?.title?.trim().toLowerCase();
+            return title?.includes(normalizedName);
+          });
+
+          return partialMatch?.links?.[0]?.href || '';
         })
       );
   }
