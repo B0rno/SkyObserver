@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+// 1. On ajoute ChangeDetectorRef dans les imports depuis @angular/core
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { NavBarComponent } from '../../components/nav-bar/nav-bar';
 import { MapActualite } from '../../components/map-actualite/map-actualite';
 import { ActuService, Actu } from '../../services/actu.service';
@@ -10,19 +11,24 @@ import { ActuService, Actu } from '../../services/actu.service';
   templateUrl: './actualites.html',
   styleUrl: './actualites.css',
 })
-
-
 export class Actualites implements OnInit {
 
-  // 3. On crée un tableau vide qui va recevoir les vraies données
   listeActualites: Actu[] = [];
 
-  constructor(private actuService: ActuService) {}
+
+    // Pour afficher la page directement
+    constructor(
+    private actuService: ActuService,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   ngOnInit() {
-    this.actuService.getDernieresActus(10).subscribe({
+    this.actuService.getDernieresActus(12).subscribe({
       next: (actusReelles) => {
         this.listeActualites = actusReelles;
+
+        // force Angular à mettre à jour l'ecran
+        this.cdr.detectChanges();
       },
       error: (err) => console.error("Erreur de chargement des actus", err)
     });
