@@ -1,13 +1,11 @@
-import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NavBarComponent } from '../../components/nav-bar/nav-bar';
 import { LocalisationSearch } from '../../components/localisation-search/localisation-search';
 import { MapActualite } from '../../components/map-actualite/map-actualite';
 import { WidgetMeteo } from '../../components/widget-meteo/widget-meteo';
-import { MeteoService, MeteoData } from '../../services/meteo.service';
 
-// 1. On importe le nouveau service d'actualités
+// On importe le service d'actualités
 import { ActuService, Actu } from '../../services/actu.service';
 
 @Component({
@@ -19,58 +17,28 @@ import { ActuService, Actu } from '../../services/actu.service';
 })
 export class Accueil implements OnInit {
 
-  villeActuelle: string = 'Paris';
-
-  meteo: MeteoData = {
-    temperature: 0,
-    icone: 'bi-hourglass',
-    condition : '',
-    bonneCondition: false
-  };
-
-  // 2. On prépare un tableau vide que l'API va remplir
+  // Tableau vide que l'API va remplir avec les actus
   actualites: Actu[] = [];
 
   constructor(
     private router: Router,
-    private meteoService: MeteoService,
-    private actuService: ActuService, // 3. On injecte le service ici
-    @Inject(PLATFORM_ID) private platformId: Object
+    private actuService: ActuService
   ) {}
 
   ngOnInit() {
-    if (isPlatformBrowser(this.platformId)) {
-      // On lance la météo
-      this.chargerMeteo(this.villeActuelle);
-
-      // 4. On lance la récupération des actualités !
-      this.actuService.getDernieresActus().subscribe({
-        next: (actusReelles) => {
-          this.actualites = actusReelles;
-        },
-        error: (err) => console.error("Erreur de chargement des actus", err)
-      });
-    }
-  }
-
-  chargerMeteo(ville: string) {
-    this.meteo.condition = 'Recherche en cours...';
-    this.meteo.icone = 'bi-hourglass-split';
-
-    this.meteoService.getMeteoParVille(ville).subscribe({
-      next: (donneesReelles) => {
-        this.meteo = donneesReelles;
-        this.villeActuelle = ville;
+    // On lance la récupération des actualités !
+    this.actuService.getDernieresActus(4).subscribe({
+      next: (actusReelles) => {
+        this.actualites = actusReelles;
       },
-      error: (erreur) => {
-        console.error('Erreur météo', erreur);
-        this.meteo.condition = 'Ville introuvable';
-        this.meteo.icone = 'bi-x-circle';
-      }
+      error: (err) => console.error("Erreur de chargement des actus", err)
     });
   }
 
   onRecherche(villeTrouvee: string) {
-    this.chargerMeteo(villeTrouvee);
+    if (villeTrouvee) {
+      // On ordonne à Angular d'aller sur la page "/vue-ciel" et on lui passe le nom de la ville dans l'URL
+      this.router.navigate(['/vue-ciel'], { queryParams: { ville: villeTrouvee } });
+    }
   }
 }

@@ -1,18 +1,16 @@
 <div class="widget-meteo">
-  <h4>MÉTÉO - {{ ville | uppercase }}</h4>
-
+  <h4>MÉTÉO @if (ville) { - {{ ville | uppercase }} }</h4>
   <div class="meteo-content">
     <div class="meteo-icon">
-      <i [class]="'bi ' + icone"></i>
+      <i [class]="'bi ' + icone()"></i>
     </div>
     <div class="meteo-info">
-      <span class="temperature">{{ temperature }}°C</span>
-      <span class="condition">{{ condition }}</span>
+      <span class="temperature">{{ temperature() }}°C</span>
+      <span class="condition">{{ condition() }}</span>
     </div>
   </div>
-
-  <div class="observation-status" [class.bonne]="bonneCondition">
-    @if (bonneCondition) {
+  <div class="observation-status" [class.bonne]="bonneCondition()">
+    @if (bonneCondition()) {
       <i class="bi bi-check-circle-fill"></i>
       <span>Bonnes conditions d'observation</span>
     } @else {
