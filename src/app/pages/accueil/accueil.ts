@@ -73,4 +73,14 @@ export class Accueil implements OnInit {
   onRecherche(villeTrouvee: string) {
     this.chargerMeteo(villeTrouvee);
   }
+
+  onVoirPlus(): void {
+    this.actuService.voirPlus();
+    this.actuService.getDernieresActus().subscribe({
+      next: (actusReelles) => {
+        this.actualites = actusReelles;
+      },
+      error: (err) => console.error("Erreur de chargement des actus", err)
+    });
+  }
 }
