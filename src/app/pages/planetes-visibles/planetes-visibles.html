@@ -1,0 +1,156 @@
+<div class="page-planetes-visibles">
+  <app-nav-bar />
+
+  <section class="section-content">
+    <div class="container">
+
+      <!-- En-tête avec les informations de la ville -->
+      <div class="header-ville">
+        <h1>Planètes visibles depuis {{ ville() }}</h1>
+        @if (coordonnees()) {
+          <p class="coordonnees">
+            <i class="bi bi-geo-alt-fill"></i>
+            {{ coordonnees()!.ville }}, {{ coordonnees()!.pays }}
+            ({{ coordonnees()!.latitude.toFixed(2) }}°, {{ coordonnees()!.longitude.toFixed(2) }}°)
+          </p>
+        }
+      </div>
+
+      <!-- Chargement -->
+      @if (loading()) {
+        <div class="loading-container">
+          <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Chargement...</span>
+          </div>
+          <p>Calcul des planètes visibles en cours...</p>
+        </div>
+      }
+
+      <!-- Erreur -->
+      @if (error() && !loading()) {
+        <div class="alert alert-danger" role="alert">
+          <i class="bi bi-exclamation-triangle-fill"></i>
+          {{ error() }}
+        </div>
+      }
+
+      <!-- Résultats -->
+      @if (!loading() && !error()) {
+
+        <!-- Aucune planète visible -->
+        @if (planetes().length === 0) {
+          <div class="alert alert-info" role="alert">
+            <i class="bi bi-info-circle-fill"></i>
+            Aucune planète n'est actuellement visible depuis cette position.
+          </div>
+        }
+
+        <!-- Planètes visibles à l'œil nu -->
+        @if (planetesOeilNu().length > 0) {
+          <div class="bloc-planetes">
+            <h2>
+              <i class="bi bi-eye-fill"></i>
+              Visibles à l'œil nu ({{ planetesOeilNu().length }})
+            </h2>
+            <div class="grille-planetes">
+              @for (planete of planetesOeilNu(); track planete.nom) {
+                <div class="carte-planete">
+                  <div class="planete-header">
+                    <h3>{{ planete.nom }}</h3>
+                    <span class="badge badge-oeil-nu">Œil nu</span>
+                  </div>
+                  <div class="planete-infos">
+                    <div class="info-item">
+                      <i class="bi bi-arrow-up-circle"></i>
+                      <span class="label">Altitude:</span>
+                      <span class="value">{{ planete.altitude }}°</span>
+                    </div>
+                    <div class="info-item">
+                      <i class="bi bi-compass"></i>
+                      <span class="label">Direction:</span>
+                      <span class="value">{{ getDirectionCardinal(planete.azimuth) }}</span>
+                    </div>
+                    <div class="info-item">
+                      <i class="bi bi-star-fill"></i>
+                      <span class="label">Magnitude:</span>
+                      <span class="value">{{ planete.magnitude }}</span>
+                    </div>
+                    <div class="info-item">
+                      <i class="bi bi-stars"></i>
+                      <span class="label">Constellation:</span>
+                      <span class="value">{{ planete.constellation }}</span>
+                    </div>
+                    <div class="info-item">
+                      <i class="bi bi-sunrise"></i>
+                      <span class="label">Lever:</span>
+                      <span class="value">{{ formatHeure(planete.lever) }}</span>
+                    </div>
+                    <div class="info-item">
+                      <i class="bi bi-sunset"></i>
+                      <span class="label">Coucher:</span>
+                      <span class="value">{{ formatHeure(planete.coucher) }}</span>
+                    </div>
+                  </div>
+                </div>
+              }
+            </div>
+          </div>
+        }
+
+        <!-- Planètes visibles au télescope -->
+        @if (planetesTelescope().length > 0) {
+          <div class="bloc-planetes">
+            <h2>
+              <i class="bi bi-binoculars-fill"></i>
+              Visibles au télescope ({{ planetesTelescope().length }})
+            </h2>
+            <div class="grille-planetes">
+              @for (planete of planetesTelescope(); track planete.nom) {
+                <div class="carte-planete">
+                  <div class="planete-header">
+                    <h3>{{ planete.nom }}</h3>
+                    <span class="badge badge-telescope">Télescope</span>
+                  </div>
+                  <div class="planete-infos">
+                    <div class="info-item">
+                      <i class="bi bi-arrow-up-circle"></i>
+                      <span class="label">Altitude:</span>
+                      <span class="value">{{ planete.altitude }}°</span>
+                    </div>
+                    <div class="info-item">
+                      <i class="bi bi-compass"></i>
+                      <span class="label">Direction:</span>
+                      <span class="value">{{ getDirectionCardinal(planete.azimuth) }}</span>
+                    </div>
+                    <div class="info-item">
+                      <i class="bi bi-star-fill"></i>
+                      <span class="label">Magnitude:</span>
+                      <span class="value">{{ planete.magnitude }}</span>
+                    </div>
+                    <div class="info-item">
+                      <i class="bi bi-stars"></i>
+                      <span class="label">Constellation:</span>
+                      <span class="value">{{ planete.constellation }}</span>
+                    </div>
+                    <div class="info-item">
+                      <i class="bi bi-sunrise"></i>
+                      <span class="label">Lever:</span>
+                      <span class="value">{{ formatHeure(planete.lever) }}</span>
+                    </div>
+                    <div class="info-item">
+                      <i class="bi bi-sunset"></i>
+                      <span class="label">Coucher:</span>
+                      <span class="value">{{ formatHeure(planete.coucher) }}</span>
+                    </div>
+                  </div>
+                </div>
+              }
+            </div>
+          </div>
+        }
+
+      }
+
+    </div>
+  </section>
+</div>
