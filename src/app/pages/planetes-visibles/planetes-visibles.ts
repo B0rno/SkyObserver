@@ -50,8 +50,8 @@ export class PlanetesVisibles implements OnInit {
       next: (coords) => {
         this.coordonnees.set(coords);
 
-        //Calculer les planètes visibles
-        const planetes = this.astronomyService.getPlanetesVisibles(coords.latitude, coords.longitude);
+        //Calculer les planètes visibles avec l'altitude pour plus de précision
+        const planetes = this.astronomyService.getPlanetesVisibles(coords.latitude, coords.longitude, coords.altitude);
         this.planetes.set(planetes);
 
         // Séparer les planètes visibles à l'œil nu et au télescope
