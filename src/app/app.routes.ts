@@ -26,6 +26,10 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/details-astre/details-astre').then(m => m.DetailsAstre)
   },
   {
+    path: 'planetes-visibles',
+    loadComponent: () => import('./pages/planetes-visibles/planetes-visibles').then(m => m.PlanetesVisibles)
+  },
+  {
     path: '**',
     redirectTo: ''
   }

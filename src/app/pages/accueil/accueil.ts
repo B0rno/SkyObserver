@@ -72,6 +72,7 @@ export class Accueil implements OnInit {
 
   onRecherche(villeTrouvee: string) {
     this.chargerMeteo(villeTrouvee);
+    this.router.navigate(['/planetes-visibles'], { queryParams: { ville: villeTrouvee } });
   }
 
   onVoirPlus(): void {
