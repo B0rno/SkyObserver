@@ -23,7 +23,7 @@ export class Actualites implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.actuService.getDernieresActus(12).subscribe({
+    this.actuService.getDernieresActus().subscribe({
       next: (actusReelles) => {
         this.listeActualites = actusReelles;
 

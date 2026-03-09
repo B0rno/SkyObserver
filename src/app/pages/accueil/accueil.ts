@@ -27,7 +27,7 @@ export class Accueil implements OnInit {
 
   ngOnInit() {
     // On lance la récupération des actualités !
-    this.actuService.getDernieresActus(4).subscribe({
+    this.actuService.getDernieresActus().subscribe({
       next: (actusReelles) => {
         this.actualites = actusReelles;
       },
