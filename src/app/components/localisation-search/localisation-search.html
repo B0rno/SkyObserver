@@ -1,22 +1,38 @@
+  <!-- Conteneur principal de la recherche de localisation -->
   <div class="search-container">
+    <!-- Formulaire de recherche avec soumission via onSubmit() -->
     <form (ngSubmit)="onSubmit()" class="search-box">
-      <input 
-        type="text" 
+      <!--
+        Champ de saisie de la ville :
+        - Événement (input) pour déclencher la recherche de suggestions en temps réel
+        - autocomplete="off" pour désactiver l'autocomplétion du navigateur
+      -->
+      <input
+        type="text"
         [(ngModel)]="villeRecherche"
         name="ville"
         (input)="onInput()"
         placeholder="Saisir votre ville"
         autocomplete="off"
       />
+      <!-- Bouton de soumission avec icône de recherche Bootstrap Icons -->
       <button type="submit">
         <i class="bi bi-search"></i>
       </button>
     </form>
-  
+
+    <!--
+      Liste déroulante des suggestions (affichée uniquement s'il y a des suggestions)
+    -->
     @if (suggestions().length > 0) {
       <ul class="suggestions">
+        <!--
+          Boucle sur chaque suggestion avec track pour optimiser le rendu
+          Chaque suggestion est cliquable et déclenche selectSuggestion()
+        -->
         @for (ville of suggestions(); track ville) {
           <li (click)="selectSuggestion(ville)">
+            <!-- Icône de géolocalisation Bootstrap Icons -->
             <i class="bi bi-geo-alt"></i>
             {{ ville }}
           </li>

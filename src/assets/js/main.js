@@ -107,7 +107,6 @@
   /**
    * Initiate Pure Counter
    */
-  // ✅ Protection ajoutée ici
   if (typeof PureCounter !== 'undefined') {
   new PureCounter();
   }
@@ -134,7 +133,6 @@
   /**
    * Initiate glightbox
    */
-  // ✅ Protection ajoutée ici (au cas où)
   if (typeof GLightbox !== 'undefined') {
   const glightbox = GLightbox({
     selector: '.glightbox'
