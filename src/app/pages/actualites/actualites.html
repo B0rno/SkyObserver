@@ -1,26 +1,25 @@
 <div class="page-actualites">
-    <app-nav-bar />
+
+  <app-nav-bar></app-nav-bar>
   
     <section class="section-header">
-      <div class="container">
-        <div class="titre-page">
-          <h1>Actualités</h1>
-        </div>
+    <div class="container-centre">
       </div>
     </section>
   
     <section class="section-liste">
-      <div class="container">
+    <div class="container-centre">
         <div class="liste-actualites">
           @for (actu of listeActualites; track actu.id) {
             <app-map-actualite 
               [titre]="actu.titre"
               [date]="actu.date"
               [image]="actu.image"
-              [lien]="'/actualites/' + actu.id"
-            />
+            [lien]="actu.lien">
+          </app-map-actualite>
           }
         </div>
       </div>
     </section>
+
   </div>

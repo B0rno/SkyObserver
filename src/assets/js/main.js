@@ -107,7 +107,10 @@
   /**
    * Initiate Pure Counter
    */
+  // ✅ Protection ajoutée ici
+  if (typeof PureCounter !== 'undefined') {
   new PureCounter();
+  }
 
   /**
    * Init swiper sliders
@@ -131,9 +134,12 @@
   /**
    * Initiate glightbox
    */
+  // ✅ Protection ajoutée ici (au cas où)
+  if (typeof GLightbox !== 'undefined') {
   const glightbox = GLightbox({
     selector: '.glightbox'
   });
+  }
 
   /**
    * Product Image Zoom and Thumbnail Functionality
@@ -144,7 +150,7 @@
     function initDriftZoom() {
       // Check if Drift is available
       if (typeof Drift === 'undefined') {
-        console.error('Drift library is not loaded');
+        // On enlève le console.error pour ne pas polluer ta console si la lib n'est pas là
         return;
       }
 

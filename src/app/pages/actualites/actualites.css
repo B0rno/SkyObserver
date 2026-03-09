@@ -1,122 +1,17 @@
-.page-actualites {
-    min-height: 100vh;
-    background: url('/assets/img/space-bg.jpg') center/cover no-repeat fixed;
-  }
-  
-  .section-header {
-    padding: 120px 0 2rem;
-  }
-  
-  .container {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 0 2rem;
-  }
-  
-  .titre-page {
-    background: rgba(255, 255, 255, 0.95);
-    border-radius: 12px;
-    padding: 1.5rem 2rem;
-    display: inline-block;
-  }
-  
-  .titre-page h1 {
-    margin: 0;
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: #1a1a2e;
-  }
-  
-  .section-liste {
-    padding: 1rem 0 4rem;
+  .container-centre {
+  max-width: 900px; /* C'est ça qui "coupe" les extrémités ! */
+  margin: 0 auto;   /* Centre la boîte parfaitement au milieu */
+  padding: 0 20px;
   }
   
   .liste-actualites {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
+  display: grid;
+  /* On force exactement 2 belles colonnes au lieu de l'étirer */
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem; /* L'espace entre les cartes */
   }
   
-  .actualite-item {
-    background: rgba(255, 255, 255, 0.95);
-    border-radius: 16px;
-    overflow: hidden;
-    display: flex;
-    transition: transform 0.3s, box-shadow 0.3s;
-  }
-  
-  .actualite-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
-  }
-  
-  .actualite-image {
-    position: relative;
-    width: 250px;
-    min-height: 180px;
-    flex-shrink: 0;
-  }
-  
-  .actualite-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  
-  .actualite-image .date {
-    position: absolute;
-    top: 15px;
-    left: 15px;
-    background: var(--accent-color, #6366f1);
-    color: white;
-    padding: 0.5rem 1rem;
-    border-radius: 6px;
-    font-size: 0.85rem;
-    font-weight: 600;
-  }
-  
-  .actualite-content {
-    padding: 1.5rem 2rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-  
-  .actualite-content h2 {
-    margin: 0 0 0.75rem;
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: #1a1a2e;
-  }
-  
-  .actualite-content p {
-    margin: 0 0 1rem;
-    color: #666;
-    line-height: 1.6;
-  }
-  
-  .btn-lire {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: var(--accent-color, #6366f1);
-    text-decoration: none;
-    font-weight: 600;
-    transition: gap 0.3s;
-  }
-  
-  .btn-lire:hover {
-    gap: 0.75rem;
-  }
-  
-  /* Responsive */
-  @media (max-width: 768px) {
-    .actualite-item {
-      flex-direction: column;
+.titre-page {
+  margin-top: 40px; /* Un peu d'espace sous la navbar */
+  margin-bottom: 20px;
     }
-  
-    .actualite-image {
-      width: 100%;
-      height: 200px;
-    }
-  }
