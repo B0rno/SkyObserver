@@ -41,4 +41,14 @@ export class Accueil implements OnInit {
       this.router.navigate(['/vue-ciel'], { queryParams: { ville: villeTrouvee } });
     }
   }
+
+  onVoirPlus(): void {
+    this.actuService.voirPlus();
+    this.actuService.getDernieresActus().subscribe({
+      next: (actusReelles) => {
+        this.actualites = actusReelles;
+      },
+      error: (err) => console.error("Erreur de chargement des actus", err)
+    });
+  }
 }

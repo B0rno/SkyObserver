@@ -17,11 +17,14 @@ export interface Actu {
 export class ActuService {
 
   constructor(private http: HttpClient) { }
+  entier: number = 4;
 
-    getDernieresActus(limite: number = 4): Observable<Actu[]> {
-
+  voirPlus(): void {
+    this.entier += 6 ;
+  }
+  getDernieresActus(): Observable<Actu[]> {
     // L'API qui renvoie les 4 derniers articles
-    const apiUrl = `https://api.spaceflightnewsapi.net/v4/articles/?limit=${limite}&search=astronomy`;
+    const apiUrl = `https://api.spaceflightnewsapi.net/v4/articles/?limit=${this.entier}&search=astronomy`;
 
     return this.http.get<any>(apiUrl).pipe(
       map(response => {
