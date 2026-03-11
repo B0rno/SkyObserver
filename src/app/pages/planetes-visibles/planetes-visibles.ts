@@ -5,6 +5,20 @@ import { NavBarComponent } from '../../components/nav-bar/nav-bar';
 import { GeocodingService, Coordonnees } from '../../services/geocoding.service';
 import { AstronomyService, PlaneteVisible } from '../../services/astronomy.service';
 
+/**
+ * Page d'affichage des planètes visibles
+ *
+ * Affiche la liste des planètes et astres visibles depuis une ville donnée
+ * en fonction de la date et heure actuelles.
+ *
+ * Fonctionnalités :
+ * - Géocodage de la ville pour obtenir les coordonnées GPS
+ * - Calculs astronomiques pour déterminer les planètes visibles
+ * - Séparation entre visibilité à l'œil nu et au télescope
+ * - Affichage des informations détaillées (altitude, azimut, heures de lever/coucher)
+ *
+ * Récupère le nom de la ville depuis les query parameters de la route
+ */
 @Component({
   selector: 'app-planetes-visibles',
   standalone: true,
@@ -13,22 +27,44 @@ import { AstronomyService, PlaneteVisible } from '../../services/astronomy.servi
   styleUrl: './planetes-visibles.css',
 })
 export class PlanetesVisibles implements OnInit {
+  /** Nom de la ville pour laquelle calculer la visibilité des planètes */
   ville = signal<string>('');
+
+  /** Coordonnées GPS (latitude, longitude, altitude) de la ville */
   coordonnees = signal<Coordonnees | null>(null);
+
+  /** Liste complète de toutes les planètes visibles au-dessus de l'horizon */
   planetes = signal<PlaneteVisible[]>([]);
+
+  /** Planètes visibles à l'œil nu (magnitude < 6 et altitude > 10°) */
   planetesOeilNu = signal<PlaneteVisible[]>([]);
+
+  /** Planètes visibles uniquement au télescope (magnitude > 6 ou altitude < 10°) */
   planetesTelescope = signal<PlaneteVisible[]>([]);
+
+  /** Indique si les données sont en cours de chargement */
   loading = signal<boolean>(true);
+
+  /** Message d'erreur à afficher en cas de problème */
   error = signal<string>('');
 
+  /**
+   * @param route - Service pour accéder aux paramètres de la route
+   * @param geocodingService - Service pour convertir une ville en coordonnées GPS
+   * @param astronomyService - Service pour calculer la visibilité des planètes
+   */
   constructor(
     private route: ActivatedRoute,
     private geocodingService: GeocodingService,
     private astronomyService: AstronomyService
   ) {}
 
+  /**
+   * Initialisation du composant
+   * Récupère le nom de la ville depuis les query parameters (?ville=...)
+   * et lance le chargement des données astronomiques
+   */
   ngOnInit() {
-    // Récupérer le nom de la ville depuis les paramètres de route
     this.route.queryParams.subscribe(params => {
       const villeParam = params['ville'];
       if (villeParam) {
@@ -41,20 +77,31 @@ export class PlanetesVisibles implements OnInit {
     });
   }
 
+  /**
+   * Charge les planètes visibles pour une ville donnée
+   *
+   * Processus en 2 étapes :
+   * 1. Géocodage : convertit le nom de la ville en coordonnées GPS
+   * 2. Calculs astronomiques : détermine les planètes visibles depuis ces coordonnées
+   *
+   * Sépare ensuite les résultats entre visibilité à l'œil nu et au télescope
+   *
+   * @param ville - Nom de la ville pour laquelle calculer la visibilité
+   */
   chargerPlanetes(ville: string) {
     this.loading.set(true);
     this.error.set('');
 
-    //Obtenir les coordonnées de la ville
+    // Étape 1 : Obtenir les coordonnées GPS de la ville via l'API de géocodage
     this.geocodingService.getCoordonnees(ville).subscribe({
       next: (coords) => {
         this.coordonnees.set(coords);
 
-        //Calculer les planètes visibles avec l'altitude pour plus de précision
+        // Étape 2 : Calculer les planètes visibles avec l'altitude pour plus de précision
         const planetes = this.astronomyService.getPlanetesVisibles(coords.latitude, coords.longitude, coords.altitude);
         this.planetes.set(planetes);
 
-        // Séparer les planètes visibles à l'œil nu et au télescope
+        // Séparer les planètes selon leur mode de visibilité
         this.planetesOeilNu.set(planetes.filter(p => p.visibleOeilNu));
         this.planetesTelescope.set(planetes.filter(p => p.visibleTelescope));
 
@@ -68,12 +115,27 @@ export class PlanetesVisibles implements OnInit {
     });
   }
 
+  /**
+   * Convertit un azimut en degrés en direction cardinale
+   *
+   * Divise le cercle (360°) en 8 directions cardinales
+   * 0° = Nord, 90° = Est, 180° = Sud, 270° = Ouest
+   *
+   * @param azimuth - Angle en degrés (0-360) depuis le Nord dans le sens horaire
+   * @returns Direction cardinale (ex: "Nord", "Sud-Est", "Ouest")
+   */
   getDirectionCardinal(azimuth: number): string {
     const directions = ['Nord', 'Nord-Est', 'Est', 'Sud-Est', 'Sud', 'Sud-Ouest', 'Ouest', 'Nord-Ouest'];
     const index = Math.round(azimuth / 45) % 8;
     return directions[index];
   }
 
+  /**
+   * Formate une date en heure locale française (format HH:mm)
+   *
+   * @param date - Date à formater
+   * @returns Heure formatée (ex: "14:30", "08:05")
+   */
   formatHeure(date: Date): string {
     return date.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
   }
