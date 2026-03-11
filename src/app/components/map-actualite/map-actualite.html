@@ -1,13 +1,37 @@
+<!--
+  Carte d'actualité avec animation AOS (Animate On Scroll)
+  data-aos="fade-up" : Animation de fondu vers le haut lors du scroll
+  position-relative : Permet l'utilisation de stretched-link
+  h-100 : Hauteur 100% pour uniformiser les cartes dans une grille
+-->
 <div class="post-item position-relative h-100" data-aos="fade-up">
 
+    <!--
+      Conteneur de l'image avec badge de date
+      overflow-hidden : Cache le débordement lors de l'effet zoom au hover
+    -->
     <div class="post-img position-relative overflow-hidden">
+      <!-- Image de l'actualité (binding dynamique avec [src]) -->
       <img [src]="image" class="img-fluid" alt="">
+
+      <!-- Badge de date positionné en haut à gauche de l'image -->
       <span class="post-date">{{ date }}</span>
     </div>
 
+    <!-- Conteneur du contenu textuel (titre + lien) -->
     <div class="post-content d-flex flex-column">
+      <!-- Titre de l'actualité -->
       <h3 class="post-title">{{ titre }}</h3>
-        <a [href]="lien" target="_blank" rel="noopener noreferrer" class="readmore stretched-link">        <span>Lire plus</span>
+
+      <!--
+        Lien "Lire plus" vers l'article complet
+        target="_blank" : Ouvre dans un nouvel onglet
+        rel="noopener noreferrer" : Sécurité et performance
+        stretched-link : Bootstrap - étend le lien clickable sur toute la carte
+      -->
+      <a [href]="lien" target="_blank" rel="noopener noreferrer" class="readmore stretched-link">
+        <span>Lire plus</span>
+        <!-- Icône flèche Bootstrap Icons -->
         <i class="bi bi-arrow-right"></i>
       </a>
     </div>

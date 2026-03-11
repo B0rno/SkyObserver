@@ -1,62 +1,98 @@
+/*
+ * Carte d'actualité principale
+ * Conteneur avec fond, ombre et coins arrondis
+ */
 .post-item {
-    background: var(--surface-color, #ffffff);
-    box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.1);
-    transition: 0.3s;
-    border-radius: 8px;
-    overflow: hidden;
+    background: var(--surface-color, #ffffff); /* Couleur de fond du thème ou blanc par défaut */
+    box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.1); /* Ombre portée douce */
+    transition: 0.3s; /* Transition pour les effets hover */
+    border-radius: 8px; /* Coins arrondis */
+    overflow: hidden; /* Cache les débordements (important pour l'effet zoom de l'image) */
   }
-  
+
+  /*
+   * Image de la carte d'actualité
+   * Dimensions fixes avec redimensionnement proportionnel
+   */
   .post-img img {
     width: 100%;
-    height: 200px;
-    object-fit: cover;
-    transition: 0.5s;
+    height: 200px; /* Hauteur fixe pour uniformiser toutes les cartes */
+    object-fit: cover; /* Recadre l'image pour remplir l'espace sans déformation */
+    transition: 0.5s; /* Transition douce pour l'effet zoom au hover */
   }
-  
+
+  /*
+   * Badge de date positionné sur l'image
+   * Badge coloré en haut à gauche de l'image
+   */
   .post-date {
-    background-color: var(--accent-color, #6366f1);
+    background-color: var(--accent-color, #6366f1); /* Couleur d'accent ou violet par défaut */
     color: white;
     position: absolute;
-    top: 15px;
-    left: 15px;
+    top: 15px; /* Distance du haut de l'image */
+    left: 15px; /* Distance de la gauche de l'image */
     border-radius: 5px;
-    text-transform: uppercase;
+    text-transform: uppercase; /* Date en majuscules */
     font-size: 13px;
     padding: 6px 12px;
-    font-weight: 600;
+    font-weight: 600; /* Texte en gras */
   }
-  
+
+  /*
+   * Zone de contenu textuel (titre + lien)
+   * Padding uniforme autour du contenu
+   */
   .post-content {
     padding: 24px;
   }
-  
+
+  /*
+   * Titre de l'actualité
+   * Style du texte avec transition pour l'effet hover
+   */
   .post-title {
-    color: var(--heading-color, #1a1a2e);
+    color: var(--heading-color, #1a1a2e); /* Couleur de titre du thème ou noir bleuté par défaut */
     font-size: 18px;
     font-weight: 600;
-    transition: 0.3s;
+    transition: 0.3s; /* Transition douce pour le changement de couleur au hover */
     margin-bottom: 16px;
   }
-  
+
+  /*
+   * Lien "Lire plus"
+   * Lien stylisé avec icône et flexbox pour l'alignement
+   */
   .readmore {
     color: var(--accent-color, #6366f1);
     display: flex;
-    align-items: center;
+    align-items: center; /* Centre verticalement le texte et l'icône */
     font-weight: 600;
-    text-decoration: none;
+    text-decoration: none; /* Supprime le soulignement par défaut */
     transition: 0.3s;
   }
-  
+
+  /*
+   * Icône flèche du lien "Lire plus"
+   * Espacement et taille de l'icône
+   */
   .readmore i {
-    margin-left: 6px;
+    margin-left: 6px; /* Espace entre le texte et l'icône */
     font-size: 16px;
   }
-  
+
+  /*
+   * Effet hover sur le titre et le lien
+   * Change la couleur en couleur d'accent au survol de la carte
+   */
   .post-item:hover .post-title,
   .post-item:hover .readmore {
     color: var(--accent-color, #6366f1);
   }
-  
+
+  /*
+   * Effet hover sur l'image
+   * Zoom progressif de 10% au survol de la carte
+   */
   .post-item:hover .post-img img {
-    transform: scale(1.1);
+    transform: scale(1.1); /* Agrandissement de 110% */
   }
