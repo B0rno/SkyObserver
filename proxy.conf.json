@@ -1,0 +1,10 @@
+{
+  "/api-planetes": {
+    "target": "https://api.le-systeme-solaire.net",
+    "secure": true,
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/api-planetes": ""
+    }
+  }
+}

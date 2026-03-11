@@ -28,12 +28,10 @@
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css",
-              "src/assets/vendor/bootstrap/css/bootstrap.min.css",
-              "src/assets/css/main.css"
+              "public/assets/vendor/bootstrap/css/bootstrap.min.css",
+              "public/assets/css/main.css"
             ],
             "scripts": [
-              "src/assets/vendor/bootstrap/js/bootstrap.bundle.min.js",
-              "src/assets/js/main.js" 
             ],
             "server": "src/main.server.ts",
             "outputMode": "server",
@@ -72,6 +70,7 @@
           "builder": "@angular/build:dev-server",
           "options": {
             "host": "0.0.0.0",
+            "proxyConfig": "proxy.conf.json",
             "port": 8080,
             "allowedHosts": [
               "localhost"

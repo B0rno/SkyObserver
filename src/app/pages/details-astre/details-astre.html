@@ -1,65 +1,45 @@
 <div class="page-details-astre">
-    <app-nav-bar />
-  
+  <app-nav-bar />
+
+  @if (astre()) {
     <section class="section-content">
       <div class="container">
         
-        <!-- En-tête avec infos de l'astre -->
         <div class="astre-header">
           <div class="astre-image">
-            @if (astre().image) {
-              <img [src]="astre().image" [alt]="astre().nom" />
-            } @else {
-              <div class="placeholder">
-                <i class="bi bi-stars"></i>
-              </div>
-            }
+            <img [src]="'/assets/img/' + astre().id + '.jpg'" [alt]="astre().name">
           </div>
+
           <div class="astre-infos">
-            <span class="type-badge">{{ astre().type }}</span>
-            <h1>{{ astre().nom }}</h1>
-            <p>{{ astre().description }}</p>
+            <span class="type-badge">{{ astre().bodyType }}</span>
+            <h1>{{ astre().name }}</h1>
+            
             <div class="caracteristiques">
               <div class="carac-item">
-                <span class="label">Distance</span>
-                <span class="valeur">{{ astre().distance }}</span>
+                <span class="label">Distance au Soleil</span>
+                <span class="valeur">{{ astre().semimajorAxis | number }} km</span>
               </div>
               <div class="carac-item">
-                <span class="label">Rayon</span>
-                <span class="valeur">{{ astre().rayon }}</span>
+                <span class="label">Rayon Moyen</span>
+                <span class="valeur">{{ astre().meanRadius | number }} km</span>
               </div>
               <div class="carac-item">
-                <span class="label">Masse</span>
-                <span class="valeur">{{ astre().masse }}</span>
+                <span class="label">Gravité</span>
+                <span class="valeur">{{ astre().gravity }} m/s²</span>
+              </div>
+              <div class="carac-item">
+                <span class="label">Température</span>
+                <span class="valeur">{{ astre().avgTemp - 273.15 | number:'1.0-0' }} °C</span>
               </div>
             </div>
           </div>
         </div>
-  
-        <!-- Villes où observable -->
-        <div class="bloc-villes">
-          <h2>{{ astre().nom }} est observable depuis :</h2>
-          <div class="grille-villes">
-            @for (ville of villesObservables(); track ville.nom) {
-              <div class="carte-ville">
-                <div class="ville-image">
-                  @if (ville.image) {
-                    <img [src]="ville.image" [alt]="ville.nom" />
-                  } @else {
-                    <div class="placeholder">
-                      <i class="bi bi-geo-alt"></i>
-                    </div>
-                  }
-                </div>
-                <div class="ville-content">
-                  <h3>{{ ville.nom }}</h3>
-                  <p>{{ ville.description }}</p>
-                </div>
-              </div>
-            }
-          </div>
-        </div>
-  
+
       </div>
     </section>
-  </div>
+  } @else {
+    <section class="section-content">
+      <p class="text-white text-center">Chargement des données stellaires...</p>
+    </section>
+  }
+</div>
