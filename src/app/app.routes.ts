@@ -6,10 +6,6 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/accueil/accueil').then(m => m.Accueil)
   },
   {
-    path: 'vue-ciel',
-    loadComponent: () => import('./pages/vue-ciel/vue-ciel').then(m => m.VueCiel)
-  },
-  {
     path: 'glossaire',
     loadComponent: () => import('./pages/glossaire/glossaire').then(m => m.Glossaire)
   },
