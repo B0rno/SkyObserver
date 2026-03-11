@@ -1,89 +1,135 @@
+/*
+ * Header principal de la navigation
+ * Fixé en haut de la page et visible sur toutes les pages
+ */
 .header {
-  position: fixed;
+  position: fixed; /* Reste en haut même lors du scroll */
   top: 0;
   left: 0;
   right: 0;
-  z-index: 1000;
+  z-index: 1000; /* S'assure que le header est au-dessus des autres éléments */
   padding: 1rem 0;
-  transition: all 0.3s ease;
+  transition: all 0.3s ease; /* Transition douce pour les changements de style */
 }
 
+/*
+ * Style du header après scroll
+ * Appliqué quand l'utilisateur scroll au-delà de 50px
+ */
 .header.scrolled {
-  background: rgba(26, 26, 46, 0.95);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+  background: rgba(26, 26, 46, 0.95); /* Fond semi-transparent */
+  backdrop-filter: blur(10px); /* Effet de flou sur le contenu derrière */
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3); /* Ombre portée */
 }
 
+/*
+ * Conteneur du header avec layout en grille
+ * 3 colonnes : logo (gauche), navigation (centre), spacer (droite)
+ */
 .header-container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 2rem;
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
+  grid-template-columns: 1fr auto 1fr; /* Colonnes flexibles pour centrer la navigation */
+  align-items: center; /* Alignement vertical centré */
 }
 
-/* Logo à gauche */
+/*
+ * Logo à gauche du header
+ * Cliquable et redirige vers l'accueil
+ */
 .logo {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  text-decoration: none;
+  gap: 0.5rem; /* Espace entre l'icône et le texte */
+  text-decoration: none; /* Supprime le soulignement du lien */
   color: white;
   font-size: 1.5rem;
-  font-weight: 700;
-  justify-self: start;
+  font-weight: 700; /* Texte en gras */
+  justify-self: start; /* Aligné à gauche dans la grille */
 }
 
+/*
+ * Icône du logo
+ * Couleur violette pour correspondre au thème
+ */
 .logo i {
   font-size: 1.8rem;
-  color: #a78bfa;
+  color: #a78bfa; /* Violet clair */
 }
 
-/* Navigation au centre */
+/*
+ * Menu de navigation au centre
+ * Positionné au centre grâce au grid layout
+ */
 .nav-menu {
-  justify-self: center;
+  justify-self: center; /* Centré dans la grille */
 }
 
+/*
+ * Liste des liens de navigation
+ * Affichés en ligne horizontale
+ */
 .nav-menu ul {
   display: flex;
-  list-style: none;
+  list-style: none; /* Supprime les puces */
   margin: 0;
   padding: 0;
-  gap: 2rem;
+  gap: 2rem; /* Espacement entre les liens */
 }
 
+/*
+ * Liens de navigation
+ * Style avec effet hover et soulignement pour le lien actif
+ */
 .nav-menu a {
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.8); /* Blanc semi-transparent */
   text-decoration: none;
   font-weight: 500;
   padding: 0.5rem 0;
-  position: relative;
-  transition: color 0.3s;
+  position: relative; /* Pour positionner le soulignement ::after */
+  transition: color 0.3s; /* Transition douce pour le changement de couleur */
 }
 
+/*
+ * Effet hover et état actif des liens
+ * Change la couleur en blanc pur
+ */
 .nav-menu a:hover,
 .nav-menu a.active {
   color: white;
 }
 
+/*
+ * Soulignement violet pour le lien actif
+ * Pseudo-élément ::after positionné en bas du lien
+ */
 .nav-menu a.active::after {
-  content: '';
+  content: ''; /* Pseudo-élément vide */
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
   height: 2px;
-  background: #a78bfa;
+  background: #a78bfa; /* Violet clair */
   border-radius: 2px;
 }
 
+/*
+ * Spacer pour équilibrer le layout
+ * Occupe la 3ème colonne de la grille pour centrer la navigation
+ */
 .nav-spacer {
-  justify-self: end;
+  justify-self: end; /* Aligné à droite dans la grille */
 }
 
+/*
+ * Bouton toggle du menu mobile
+ * Caché par défaut, affiché uniquement en responsive
+ */
 .menu-toggle {
-  display: none;
+  display: none; /* Caché par défaut */
   background: none;
   border: none;
   color: white;
@@ -92,40 +138,68 @@
   justify-self: end;
 }
 
+/*
+ * Version responsive pour écrans mobiles et tablettes
+ * Affiche un menu hamburger avec animation slide
+ */
 @media (max-width: 768px) {
+  /*
+   * Conteneur en flexbox pour mobile
+   * Simplifie le layout avec logo à gauche et toggle à droite
+   */
   .header-container {
     display: flex;
     justify-content: space-between;
   }
 
+  /*
+   * Menu mobile en position fixe
+   * Caché par défaut, apparaît avec animation slide vers le bas
+   */
   .nav-menu {
     position: fixed;
-    top: 70px;
+    top: 70px; /* En dessous du header */
     left: 0;
     right: 0;
-    background: rgba(26, 26, 46, 0.98);
+    background: rgba(26, 26, 46, 0.98); /* Fond presque opaque */
     padding: 2rem;
-    transform: translateY(-100%);
+    transform: translateY(-100%); /* Caché au-dessus de l'écran */
     opacity: 0;
     visibility: hidden;
-    transition: all 0.3s ease;
+    transition: all 0.3s ease; /* Animation douce */
   }
 
+  /*
+   * Menu mobile ouvert
+   * Slide vers le bas et devient visible
+   */
   .nav-menu.active {
-    transform: translateY(0);
+    transform: translateY(0); /* Position normale */
     opacity: 1;
     visibility: visible;
   }
 
+  /*
+   * Liste verticale en mobile
+   * Les liens sont empilés verticalement
+   */
   .nav-menu ul {
     flex-direction: column;
-    gap: 1rem;
+    gap: 1rem; /* Espacement réduit entre les liens */
   }
 
+  /*
+   * Spacer caché en mobile
+   * Non nécessaire avec le layout flexbox
+   */
   .nav-spacer {
     display: none;
   }
 
+  /*
+   * Bouton toggle affiché en mobile
+   * Permet d'ouvrir/fermer le menu
+   */
   .menu-toggle {
     display: block;
   }

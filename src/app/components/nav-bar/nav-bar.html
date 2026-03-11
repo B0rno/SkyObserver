@@ -1,24 +1,60 @@
+<!--
+  Header fixe de la navigation
+  fixed-top : classe Bootstrap qui fixe l'élément en haut de la page
+  d-flex align-items-center : flexbox pour aligner verticalement le contenu
+-->
 <header id="header" class="header d-flex align-items-center fixed-top">
+  <!--
+    Conteneur principal du header
+    container-fluid container-xl : conteneur responsive Bootstrap
+    Grid layout (défini dans le CSS) avec 3 colonnes : logo, navigation, spacer
+  -->
   <div class="header-container container-fluid container-xl position-relative d-flex align-items-center">
 
+    <!--
+      Logo cliquable redirigeant vers la page d'accueil
+      routerLink="/" : lien Angular Router vers la racine
+    -->
     <a routerLink="/" class="logo d-flex align-items-center">
       <h1 class="sitename">SkyObserver</h1>
     </a>
 
+    <!--
+      Menu de navigation principal
+      mx-auto : centre le menu horizontalement (Bootstrap margin auto)
+    -->
     <nav id="navmenu" class="navmenu mx-auto">
+      <!--
+        Liste des liens de navigation
+        d-flex : affichage en ligne (flexbox)
+        list-unstyled : supprime les puces de liste
+        mb-0 : supprime la marge inférieure
+      -->
       <ul class="d-flex list-unstyled mb-0">
+        <!-- Lien Accueil -->
         <li>
+          <!--
+            routerLinkActive="active" : ajoute la classe "active" quand ce lien est actif
+            [routerLinkActiveOptions]="{exact: true}" : correspondance exacte nécessaire
+            (évite que "/" soit actif sur toutes les pages)
+          -->
           <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Accueil</a>
         </li>
+        <!-- Lien Actualités -->
         <li>
           <a routerLink="/actualites" routerLinkActive="active">Actualités</a>
         </li>
+        <!-- Lien Glossaire -->
         <li>
           <a routerLink="/glossaire" routerLinkActive="active">Glossaire</a>
         </li>
       </ul>
     </nav>
 
+    <!--
+      Spacer pour équilibrer le layout en grille
+      Occupe la 3ème colonne pour centrer la navigation
+    -->
     <div class="logo-spacer"></div>
 
   </div>
