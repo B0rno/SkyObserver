@@ -1,60 +1,96 @@
+/*
+ * Carte d'astre principale 
+ * Lien stylisé comme une carte avec effets hover
+ */
 .map-astre {
-    display: block;
+    display: block; /* Lien en mode bloc pour occuper tout l'espace */
     background: var(--surface-color, #ffffff);
     border-radius: 12px;
-    overflow: hidden;
-    text-decoration: none;
-    color: inherit;
+    overflow: hidden; /* Cache les débordements  */
+    text-decoration: none; /* Supprime le soulignement du lien */
+    color: inherit; /* Hérite la couleur du parent */
     box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition: transform 0.3s, box-shadow 0.3s; /* Transitions pour les effets hover */
   }
-  
+
+  /*
+   * Effet hover sur la carte
+   * Élévation légère et ombre plus prononcée au survol
+   */
   .map-astre:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    transform: translateY(-5px); /* Élévation de 5px vers le haut */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); /* Ombre plus marquée */
   }
-  
+
+  /*
+   * Conteneur de l'image avec ratio carré
+   * Force un format carré 1:1 pour uniformiser toutes les cartes
+   */
   .map-image {
-    aspect-ratio: 1;
-    background: #f0f0f0;
-    overflow: hidden;
+    aspect-ratio: 1; /* Format carré (hauteur = largeur) */
+    background: #f0f0f0; /* Fond gris clair par défaut */
+    overflow: hidden; /* Cache le débordement lors du zoom */
   }
-  
+
+  /*
+   * Image de l'astre
+   * Redimensionnée pour remplir le conteneur carré
+   */
   .map-image img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s;
+    object-fit: cover; /* Recadre l'image pour remplir l'espace sans déformation */
+    transition: transform 0.3s; /* Transition douce pour l'effet zoom */
   }
-  
+
+  /*
+   * Effet hover sur l'image
+   * Zoom léger de 5% au survol de la carte
+   */
   .map-astre:hover .map-image img {
-    transform: scale(1.05);
+    transform: scale(1.05); /* Agrandissement de 105% */
   }
-  
+
+  /*
+   * Placeholder affiché quand il n'y a pas d'image
+   * Affiche une icône d'étoiles sur un dégradé
+   */
   .placeholder {
     width: 100%;
     height: 100%;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 3rem;
-    color: #ccc;
-    background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
+    align-items: center; /* Centre verticalement */
+    justify-content: center; /* Centre horizontalement */
+    font-size: 3rem; /* Grande icône */
+    color: #ccc; /* Couleur grise claire */
+    background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%); /* Dégradé gris */
   }
-  
+
+  /*
+   * Zone de contenu textuel (nom + description)
+   * Padding uniforme autour du texte
+   */
   .map-content {
     padding: 1rem;
   }
-  
+
+  /*
+   * Nom de l'astre (titre)
+   * Style du titre avec marge inférieure
+   */
   .map-content h3 {
-    margin: 0 0 0.5rem;
+    margin: 0 0 0.5rem; /* Marge inférieure pour espacer du paragraphe */
     font-size: 1.1rem;
-    font-weight: 600;
+    font-weight: 600; /* Texte en gras */
     color: var(--heading-color, #1a1a2e);
   }
-  
+
+  /*
+   * Description de l'astre
+   * Texte plus petit et de couleur secondaire
+   */
   .map-content p {
     margin: 0;
-    color: #666;
+    color: #666; /* Couleur grise pour le texte secondaire */
     font-size: 0.9rem;
   }

@@ -1,16 +1,31 @@
-
+<!--
+  Carte cliquable d'astre avec navigation Angular Router
+  Lien vers la page de détails de l'astre (/details-astre/:id)
+-->
 <a [routerLink]="['/details-astre', id]" class="map-astre">
+    <!--
+      Conteneur de l'image avec aspect-ratio carré
+      Affiche soit l'image de l'astre, soit un placeholder
+    -->
     <div class="map-image">
+      <!-- Si une image est fournie, l'afficher -->
       @if (image) {
         <img [src]="image" [alt]="nom" />
-      } @else {
+      }
+      <!-- Sinon, afficher un placeholder avec icône d'étoiles -->
+      @else {
         <div class="placeholder">
+          <!-- Icône d'étoiles Bootstrap Icons -->
           <i class="bi bi-stars"></i>
         </div>
       }
     </div>
+
+    <!-- Conteneur du contenu textuel (nom + description) -->
     <div class="map-content">
+      <!-- Nom de l'astre en titre -->
       <h3>{{ nom }}</h3>
+      <!-- Description courte de l'astre -->
       <p>{{ description }}</p>
     </div>
   </a>
