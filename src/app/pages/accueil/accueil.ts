@@ -63,11 +63,11 @@ export class Accueil implements OnInit {
    */
   ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {
-      // Charger la météo pour la ville par défaut (Paris)
+      // Charger la météo pour la ville par défaut (Le Mans)
       this.chargerMeteo(this.villeActuelle);
 
-      // Récupérer les dernières actualités depuis l'API
-      this.actuService.getDernieresActus().subscribe({
+      // Récupérer les 4 dernières actualités pour l'aperçu sur l'accueil
+      this.actuService.getDernieresActus(4).subscribe({
         next: (actusReelles) => {
           this.actualites = actusReelles;
         },
@@ -118,19 +118,13 @@ export class Accueil implements OnInit {
   }
 
   /**
-   * Charge davantage d'actualités
+   * Navigue vers la page des actualités
    * Appelé lors du clic sur le bouton "Voir plus"
    *
-   * Incrémente le nombre d'actualités à afficher dans le service
-   * puis recharge la liste complète
+   * Redirige l'utilisateur vers la page complète des actualités
+   * qui affichera 12 actualités au lieu de 4
    */
   onVoirPlus(): void {
-    this.actuService.voirPlus();
-    this.actuService.getDernieresActus().subscribe({
-      next: (actusReelles) => {
-        this.actualites = actusReelles;
-      },
-      error: (err) => console.error("Erreur de chargement des actus", err)
-    });
+    this.router.navigate(['/actualites']);
   }
 }
