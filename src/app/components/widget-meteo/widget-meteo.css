@@ -1,72 +1,117 @@
+/*
+ * Conteneur principal du widget météo
+ * Carte avec fond, ombre et coins arrondis
+ */
 .widget-meteo {
-    background: var(--surface-color, #ffffff);
+    background: var(--surface-color, #ffffff); /* Couleur de fond du thème ou blanc par défaut */
     border-radius: 12px;
     padding: 1.5rem;
-    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1); /* Ombre portée douce */
   }
-  
+
+  /*
+   * Titre du widget
+   * Affiche "MÉTÉO - [VILLE]" en petit texte espacé
+   */
   .widget-meteo h4 {
     margin: 0 0 1rem;
     font-size: 0.85rem;
     font-weight: 600;
-    color: #666;
-    letter-spacing: 1px;
+    color: #666; /* Gris moyen */
+    letter-spacing: 1px; /* Espacement des lettres pour un effet élégant */
   }
-  
+
+  /*
+   * Conteneur des informations météo principales
+   * Layout flexbox horizontal avec icône et infos
+   */
   .meteo-content {
     display: flex;
-    align-items: center;
-    gap: 1rem;
+    align-items: center; /* Alignement vertical centré */
+    gap: 1rem; /* Espacement entre l'icône et les infos */
     margin-bottom: 1rem;
   }
-  
+
+  /*
+   * Conteneur de l'icône météo
+   * Carré avec dégradé jaune pour représenter le soleil/météo
+   */
   .meteo-icon {
     width: 70px;
     height: 70px;
-    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); /* Dégradé jaune clair à jaune */
     border-radius: 12px;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: center; /* Centre verticalement */
+    justify-content: center; /* Centre horizontalement */
   }
-  
+
+  /*
+   * Icône météo Bootstrap Icons
+   * Grande icône orange représentant la météo
+   */
   .meteo-icon i {
     font-size: 2rem;
-    color: #f59e0b;
+    color: #f59e0b; /* Orange (couleur soleil) */
   }
-  
+
+  /*
+   * Conteneur des informations textuelles
+   * Disposition verticale (température au-dessus, condition en dessous)
+   */
   .meteo-info {
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* Empile les éléments verticalement */
   }
-  
+
+  /*
+   * Affichage de la température
+   * Grand texte en gras pour la température en °C
+   */
   .temperature {
     font-size: 1.8rem;
-    font-weight: 700;
+    font-weight: 700; /* Texte très gras */
     color: var(--heading-color, #1a1a2e);
   }
-  
+
+  /*
+   * Description de la condition météo
+   * Texte plus petit sous la température
+   */
   .condition {
-    color: #666;
+    color: #666; /* Gris moyen */
     font-size: 1rem;
   }
-  
+
+  /*
+   * Badge de statut des conditions d'observation
+   * Affiche si les conditions sont bonnes ou mauvaises pour l'observation astronomique
+   * Par défaut (conditions défavorables) : fond rouge clair avec texte rouge
+   */
   .observation-status {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.5rem; /* Espacement entre l'icône et le texte */
     padding: 0.75rem;
     border-radius: 8px;
     font-size: 0.85rem;
-    background: #fef2f2;
-    color: #dc2626;
+    background: #fef2f2; /* Fond rouge très clair */
+    color: #dc2626; /* Texte rouge (mauvaises conditions) */
   }
-  
+
+  /*
+   * Badge de bonnes conditions d'observation
+   * Fond vert clair avec texte vert (classe appliquée conditionnellement)
+   */
   .observation-status.bonne {
-    background: #f0fdf4;
-    color: #16a34a;
+    background: #f0fdf4; /* Fond vert très clair */
+    color: #16a34a; /* Texte vert (bonnes conditions) */
   }
-  
+
+  /*
+   * Icône du badge de statut
+   * Taille de l'icône check/x-circle
+   */
   .observation-status i {
     font-size: 1rem;
   }

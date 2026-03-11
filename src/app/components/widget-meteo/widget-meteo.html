@@ -1,21 +1,54 @@
+<!-- Conteneur principal du widget météo -->
 <div class="widget-meteo">
+  <!--
+    Titre du widget avec nom de la ville
+    | uppercase : pipe Angular qui transforme le texte en majuscules
+  -->
   <h4>MÉTÉO - {{ ville | uppercase }}</h4>
 
+  <!--
+    Conteneur des informations météo principales
+    Affiche l'icône météo et les données (température + condition)
+  -->
   <div class="meteo-content">
+    <!--
+      Icône météo avec fond coloré
+      Affichage dynamique de l'icône Bootstrap Icons
+    -->
     <div class="meteo-icon">
+      <!--
+        Icône Bootstrap Icons dynamique
+        [class] binding : concatène "bi " avec la classe d'icône fournie
+        ex: "bi " + "bi-sun-fill" = "bi bi-sun-fill"
+      -->
       <i [class]="'bi ' + icone"></i>
     </div>
+
+    <!-- Conteneur des informations textuelles (température et condition) -->
     <div class="meteo-info">
+      <!-- Température en degrés Celsius -->
       <span class="temperature">{{ temperature }}°C</span>
+      <!-- Description de la condition météo -->
       <span class="condition">{{ condition }}</span>
     </div>
   </div>
 
+  <!--
+    Badge de statut des conditions d'observation
+    [class.bonne] : ajoute la classe "bonne" si bonneCondition est true
+    Change le style (couleur) selon l'état des conditions
+  -->
   <div class="observation-status" [class.bonne]="bonneCondition">
+    <!--
+      Affichage conditionnel selon les conditions d'observation
+      @if/@else : nouvelle syntaxe de contrôle de flux Angular
+    -->
     @if (bonneCondition) {
+      <!-- Conditions favorables : icône verte avec message positif -->
       <i class="bi bi-check-circle-fill"></i>
       <span>Bonnes conditions d'observation</span>
     } @else {
+      <!-- Conditions défavorables : icône rouge avec message négatif -->
       <i class="bi bi-x-circle-fill"></i>
       <span>Conditions défavorables</span>
     }
