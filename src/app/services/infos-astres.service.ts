@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class InfosAstresService {
   private apiUrl = '/api-planetes/rest/bodies/';  
   
-  private apiKey = '0431b320-4719-4e69-a27b-6696286a4f78'; 
+  private apiKey = 'clé'; 
 
   constructor(private http: HttpClient) { }
 
