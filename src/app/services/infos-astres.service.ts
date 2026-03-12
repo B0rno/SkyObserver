@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -8,17 +9,15 @@ import { Observable } from 'rxjs';
 export class InfosAstresService {
   private apiUrl = '/api-planetes/rest/bodies/';  
   
-  private apiKey = 'clé'; 
+  private apiKey = environment.apiKey; 
 
   constructor(private http: HttpClient) { }
 
   getInfosAstre(id: string): Observable<any> {
-    // On configure l'en-tête d'autorisation Bearer
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.apiKey}`
     });
 
-    // On passe les headers dans l'option de la requête GET
     return this.http.get<any>(`${this.apiUrl}${id}`, { headers });
   }
 }

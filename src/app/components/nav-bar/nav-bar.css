@@ -22,6 +22,13 @@
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3); /* Ombre portée */
 }
 
+.nav-logo {
+  height: 100px !important;
+  width: auto !important;
+  border-radius: 6px;
+  margin-right: 10px;
+}
+
 /*
  * Conteneur du header avec layout en grille
  * 3 colonnes : logo (gauche), navigation (centre), spacer (droite)

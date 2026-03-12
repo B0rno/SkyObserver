@@ -7,7 +7,7 @@
         
         <div class="astre-header">
           <div class="astre-image">
-            <img [src]="'/assets/img/' + astre().id + '.jpg'" [alt]="astre().name">
+            <img [src]="'/assets/img/' + astre().id + '.jpg'" [alt]="astre().name" onerror="this.src='/assets/img/default.jpg'">
           </div>
 
           <div class="astre-infos">
@@ -28,9 +28,43 @@
                 <span class="valeur">{{ astre().gravity }} m/s²</span>
               </div>
               <div class="carac-item">
-                <span class="label">Température</span>
+                <span class="label">Température Moyenne</span>
                 <span class="valeur">{{ astre().avgTemp - 273.15 | number:'1.0-0' }} °C</span>
               </div>
+
+              <div class="carac-item">
+                <span class="label">Orbite (1 Année)</span>
+                <span class="valeur">{{ astre().sideralOrbit | number }} jours</span>
+              </div>
+              <div class="carac-item">
+                <span class="label">Rotation (1 Jour)</span>
+                <span class="valeur">{{ astre().sideralRotation | number }} heures</span>
+              </div>
+              <div class="carac-item">
+                <span class="label">Densité</span>
+                <span class="valeur">{{ astre().density }} g/cm³</span>
+              </div>
+              
+              @if (astre().moons) {
+                <div class="carac-item">
+                  <span class="label">Satellites connus</span>
+                  <span class="valeur">{{ astre().moons.length }}</span>
+                </div>
+              }
+
+              @if (astre().discoveredBy) {
+                <div class="carac-item">
+                  <span class="label">Découvert par</span>
+                  <span class="valeur">{{ astre().discoveredBy }}</span>
+                </div>
+              }
+              @if (astre().discoveryDate) {
+                <div class="carac-item">
+                  <span class="label">Date de découverte</span>
+                  <span class="valeur">{{ astre().discoveryDate }}</span>
+                </div>
+              }
+
             </div>
           </div>
         </div>

@@ -1,38 +1,19 @@
 <div class="page-glossaire">
   <app-nav-bar />
 
-  <section class="section-recherche">
-    <div class="search-box">
-      <input 
-        type="text" 
-        [(ngModel)]="recherche"
-        placeholder="Rechercher un Astre"
-      />
-      <i class="bi bi-search"></i>
-    </div>
-  </section>
-
   <section class="section-astres">
     <div class="container">
       <div class="grille-astres">
-        @for (astre of astresFiltres(); track astre.id) {
+        @for (astre of tousLesAstres(); track astre.id) {
           <div (click)="afficherInfos(astre.id)" style="cursor: pointer;">
             <app-map-astre 
               [id]="astre.id"
               [nom]="astre.nom"
-              [description]="astre.description"
               [image]="astre.image"
             />
           </div>
         }
       </div>
-
-      @if (astresFiltres().length === 0) {
-        <div class="aucun-resultat">
-          <i class="bi bi-search"></i>
-          <p>Aucun astre trouvé pour "{{ recherche }}"</p>
-        </div>
-      }
     </div>
   </section>
 
@@ -47,25 +28,6 @@
         <h2>{{ astreSelectionne().name }}</h2>
         <p class="text-center"><strong>Type :</strong> {{ astreSelectionne().bodyType }}</p>
         
-        <div class="infos-grid">
-          <div class="info-item">
-            <i class="bi bi-arrows-collapse"></i>
-            <span><strong>Gravité</strong><br>{{ astreSelectionne().gravity }} m/s²</span>
-          </div>
-          <div class="info-item">
-            <i class="bi bi-rulers"></i>
-            <span><strong>Rayon</strong><br>{{ astreSelectionne().meanRadius }} km</span>
-          </div>
-          <div class="info-item">
-            <i class="bi bi-thermometer-half"></i>
-            <span><strong>Température</strong><br>{{ astreSelectionne().avgTemp }} K</span>
-          </div>
-          <div class="info-item">
-            <i class="bi bi-arrow-repeat"></i>
-            <span><strong>Orbite</strong><br>{{ astreSelectionne().sideralOrbit }} jours</span>
-          </div>
-        </div>
-
       </div>
     </div>
   }
