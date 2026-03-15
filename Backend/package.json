@@ -1,0 +1,19 @@
+{
+  "name": "skyobserver_backend",
+  "version": "1.0.0",
+  "description": "Backend pour le site SkyObserver",
+  "keywords": [
+    "skyobserver"
+  ],
+  "license": "ISC",
+  "author": "Enzo Desfaudais (B0rno)",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.2.1"
+  }
+}
