@@ -4,6 +4,8 @@ require('dotenv').config();
 // Import des dépendances
 const express = require('express');
 const cors = require('cors');
+const authRoutes = require('./src/routes/auth.routes');
+
 
 // Initialisation de l'application Express
 const app = express();
@@ -25,6 +27,9 @@ app.use(express.json());
 // ========================================
 // ROUTES
 // ========================================
+
+// Routes d'authentification
+app.use('/api/auth', authRoutes);
 
 /**
  * Route de test
