@@ -5,6 +5,7 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const authRoutes = require('./src/routes/auth.routes');
+const favoriteRoutes = require('./src/routes/favorite.routes');
 
 
 // Initialisation de l'application Express
@@ -30,6 +31,9 @@ app.use(express.json());
 
 // Routes d'authentification
 app.use('/api/auth', authRoutes);
+
+// Routes des favoris
+app.use('/api/favorites', favoriteRoutes);
 
 /**
  * Route de test
