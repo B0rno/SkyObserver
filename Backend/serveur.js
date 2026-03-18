@@ -6,6 +6,7 @@ const express = require('express');
 const cors = require('cors');
 const authRoutes = require('./src/routes/auth.routes');
 const favoriteRoutes = require('./src/routes/favorite.routes');
+const observationRoutes = require('./src/routes/observation.routes');
 
 
 // Initialisation de l'application Express
@@ -34,6 +35,9 @@ app.use('/api/auth', authRoutes);
 
 // Routes des favoris
 app.use('/api/favorites', favoriteRoutes);
+
+// Routes des observations
+app.use('/api/observations', observationRoutes);
 
 /**
  * Route de test
