@@ -1,5 +1,5 @@
 import { Component, OnInit, signal } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { NavBarComponent } from '../../components/nav-bar/nav-bar';
 import { GeocodingService, Coordonnees } from '../../services/geocoding.service';
@@ -22,7 +22,7 @@ import { AstronomyService, PlaneteVisible } from '../../services/astronomy.servi
 @Component({
   selector: 'app-planetes-visibles',
   standalone: true,
-  imports: [CommonModule, NavBarComponent],
+  imports: [CommonModule, NavBarComponent, RouterLink],
   templateUrl: './planetes-visibles.html',
   styleUrl: './planetes-visibles.css',
 })

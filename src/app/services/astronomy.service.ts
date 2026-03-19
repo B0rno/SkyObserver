@@ -26,7 +26,8 @@ export class AstronomyService {
     { nom: 'Jupiter', body: Astronomy.Body.Jupiter, magnitudeLimite: -2.0 },
     { nom: 'Saturne', body: Astronomy.Body.Saturn, magnitudeLimite: 1.0 },
     { nom: 'Uranus', body: Astronomy.Body.Uranus, magnitudeLimite: 5.5 },
-    { nom: 'Neptune', body: Astronomy.Body.Neptune, magnitudeLimite: 8.0 }
+    { nom: 'Neptune', body: Astronomy.Body.Neptune, magnitudeLimite: 8.0 },
+    { nom: 'Pluton', body: Astronomy.Body.Pluto, magnitudeLimite: 14.0 }
   ];
 
   constructor() { }

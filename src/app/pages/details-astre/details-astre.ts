@@ -23,7 +23,6 @@ export class DetailsAstre implements OnInit {
     const id = this.route.snapshot.paramMap.get('id');
 
     if (id) {
-      // On force l'ID en minuscules pour éviter les erreurs CORS/404
       const idPropre = id.toLowerCase(); 
 
       this.infosService.getInfosAstre(idPropre).subscribe({

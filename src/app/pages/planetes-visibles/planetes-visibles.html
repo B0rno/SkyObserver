@@ -4,7 +4,6 @@
   <section class="section-content">
     <div class="container">
 
-      <!-- En-tête avec les informations de la ville -->
       <div class="header-ville">
         <h1>Planètes visibles depuis {{ ville() }}</h1>
         @if (coordonnees()) {
@@ -16,7 +15,6 @@
         }
       </div>
 
-      <!-- Chargement -->
       @if (loading()) {
         <div class="loading-container">
           <div class="spinner-border text-primary" role="status">
@@ -26,7 +24,6 @@
         </div>
       }
 
-      <!-- Erreur -->
       @if (error() && !loading()) {
         <div class="alert alert-danger" role="alert">
           <i class="bi bi-exclamation-triangle-fill"></i>
@@ -34,10 +31,8 @@
         </div>
       }
 
-      <!-- Résultats -->
       @if (!loading() && !error()) {
 
-        <!-- Aucune planète visible -->
         @if (planetes().length === 0) {
           <div class="alert alert-info" role="alert">
             <i class="bi bi-info-circle-fill"></i>
@@ -45,7 +40,6 @@
           </div>
         }
 
-        <!-- Planètes visibles à l'œil nu -->
         @if (planetesOeilNu().length > 0) {
           <div class="bloc-planetes">
             <h2>
@@ -54,7 +48,7 @@
             </h2>
             <div class="grille-planetes">
               @for (planete of planetesOeilNu(); track planete.nom) {
-                <div class="carte-planete">
+                <div class="carte-planete" [routerLink]="['/details-astre', planete.nom.toLowerCase()]">
                   <div class="planete-header">
                     <h3>{{ planete.nom }}</h3>
                     <span class="badge badge-oeil-nu">Œil nu</span>
@@ -97,7 +91,6 @@
           </div>
         }
 
-        <!-- Planètes visibles au télescope -->
         @if (planetesTelescope().length > 0) {
           <div class="bloc-planetes">
             <h2>
@@ -106,7 +99,7 @@
             </h2>
             <div class="grille-planetes">
               @for (planete of planetesTelescope(); track planete.nom) {
-                <div class="carte-planete">
+                <div class="carte-planete" [routerLink]="['/astre', planete.nom.toLowerCase()]">
                   <div class="planete-header">
                     <h3>{{ planete.nom }}</h3>
                     <span class="badge badge-telescope">Télescope</span>
