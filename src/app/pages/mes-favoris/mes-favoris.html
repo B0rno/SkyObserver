@@ -1,0 +1,101 @@
+<!-- Conteneur principal de la page Mes Favoris -->
+<div class="favoris-container">
+  <div class="container py-5">
+
+    <!-- En-tête de la page -->
+    <div class="page-header text-center mb-5">
+      <h1 class="display-4 mb-3">Mes Favoris</h1>
+      <p class="lead text-muted">
+        Retrouvez vos planètes et astres préférés
+      </p>
+    </div>
+
+    <!-- État de chargement -->
+    @if (loading) {
+      <div class="text-center py-5">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Chargement...</span>
+        </div>
+        <p class="mt-3 text-muted">Chargement de vos favoris...</p>
+      </div>
+    }
+
+    <!-- Message d'erreur -->
+    @else if (errorMessage) {
+      <div class="alert alert-danger" role="alert">
+        <i class="bi bi-exclamation-triangle-fill me-2"></i>
+        {{ errorMessage }}
+        <button (click)="loadFavorites()" class="btn btn-sm btn-outline-danger ms-3">
+          Réessayer
+        </button>
+      </div>
+    }
+
+    <!-- Liste vide -->
+    @else if (favoriteService.favorites().length === 0) {
+      <div class="empty-state text-center py-5">
+        <h3 class="mb-3">Aucun favori pour le moment</h3>
+        <p class="text-muted mb-4">
+          Ajoutez des planètes à vos favoris pour les retrouver facilement ici !
+        </p>
+        <a routerLink="/planetes-visibles" class="btn btn-primary">
+          <i class="bi bi-stars me-2"></i>
+          Découvrir les planètes
+        </a>
+      </div>
+    }
+
+    <!-- Liste des favoris -->
+    @else {
+      <div class="row g-4">
+        @for (favorite of favoriteService.favorites(); track favorite.id) {
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="favorite-card">
+              <!-- En-tête de la carte -->
+              <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="card-title mb-0">
+                  {{ favorite.planetName }}
+                </h5>
+                <button
+                  (click)="removeFavorite(favorite)"
+                  class="btn btn-sm btn-outline-danger"
+                  title="Retirer des favoris"
+                >
+                  <i class="bi bi-heart-fill"></i>
+                </button>
+              </div>
+
+              <!-- Corps de la carte -->
+              <div class="card-body">
+                <p class="text-muted mb-3">
+                  <i class="bi bi-calendar-event me-2"></i>
+                  Ajouté le {{ favorite.createdAt | date:'dd/MM/yyyy' }}
+                </p>
+
+                <!-- Lien vers les détails -->
+                <a
+                  [routerLink]="['/details-astre', favorite.planetName]"
+                  class="btn btn-primary w-100"
+                >
+                  <i class="bi bi-info-circle me-2"></i>
+                  Voir les détails
+                </a>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+
+      <!-- Statistiques -->
+      <div class="stats-section mt-5 text-center">
+        <div class="stats-card">
+          <h4 class="mb-2">{{ favoriteService.favorites().length }}</h4>
+          <p class="text-muted mb-0">
+            {{ favoriteService.favorites().length === 1 ? 'favori' : 'favoris' }}
+          </p>
+        </div>
+      </div>
+    }
+
+  </div>
+</div>
