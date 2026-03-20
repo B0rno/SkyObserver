@@ -7,10 +7,11 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FavoriteService, Favorite } from '../../services/favorite.service';
 import { RouterLink } from '@angular/router';
+import { NavBarComponent } from '../../components/nav-bar/nav-bar';
 
 @Component({
   selector: 'app-mes-favoris',
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, NavBarComponent],
   templateUrl: './mes-favoris.html',
   styleUrl: './mes-favoris.css',
 })

@@ -8,10 +8,12 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { ObservationService, Observation } from '../../services/observation.service';
+import { NavBarComponent } from '../../components/nav-bar/nav-bar';
+
 
 @Component({
   selector: 'app-mes-observations',
-  imports: [CommonModule, RouterLink, FormsModule],
+  imports: [CommonModule, RouterLink, FormsModule, NavBarComponent],
   templateUrl: './mes-observations.html',
   styleUrl: './mes-observations.css',
 })
