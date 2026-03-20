@@ -114,15 +114,23 @@ export class AuthService {
   private checkAuthStatus(): void {
     const token = this.getToken();
     if (token) {
-      // Si un token existe, récupérer le profil utilisateur
+      // Considérer l'utilisateur comme authentifié si un token existe
+      // La vérification réelle sera faite lors des requêtes API
+      this.isAuthenticated.set(true);
+
+      // Essayer de récupérer le profil (optionnel)
       this.getProfile().subscribe({
         next: () => {
           // Le profil a été récupéré avec succès
           this.isAuthenticated.set(true);
         },
-        error: () => {
-          // Le token est invalide ou expiré
-          this.logout();
+        error: (error) => {
+          // Déconnecter SEULEMENT si le token est invalide (401)
+          // Pas si c'est juste une erreur réseau
+          if (error.status === 401) {
+            this.logout();
+          }
+          // Sinon, garder l'utilisateur connecté
         }
       });
     }
