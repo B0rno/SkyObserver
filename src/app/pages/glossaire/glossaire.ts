@@ -27,7 +27,7 @@ export class Glossaire {
     { id: 'jupiter', nom: 'Jupiter', image: '/assets/img/jupiter.jpg' },
     { id: 'saturne', nom: 'Saturne', image: '/assets/img/saturne.jpg' },
     { id: 'uranus', nom: 'Uranus', image: '/assets/img/uranus.jpg' },
-    { id: 'neptune', nom: 'Neptune', image: '/assets/img/neptune.png' }, 
+    { id: 'neptune', nom: 'Neptune', image: '/assets/img/neptune.jpg' }, 
     { id: 'pluton', nom: 'Pluton', image: '/assets/img/pluton.jpg' },
   ]);
 
