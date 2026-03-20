@@ -1,8 +1,9 @@
 /*
- * Carte d'astre principale 
+ * Carte d'astre principale
  * Lien stylisé comme une carte avec effets hover
  */
 .map-astre {
+    position: relative; /* Position relative pour le bouton favori absolu */
     display: block; /* Lien en mode bloc pour occuper tout l'espace */
     background: var(--surface-color, #ffffff);
     border-radius: 12px;
@@ -93,4 +94,55 @@
     margin: 0;
     color: #666; /* Couleur grise pour le texte secondaire */
     font-size: 0.9rem;
+  }
+
+  /*
+   * Bouton favoris
+   * Positionné en haut à droite de la carte
+   */
+  .btn-favorite {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    z-index: 10; /* Au-dessus de l'image */
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%; /* Bouton rond */
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px); /* Effet de flou derrière */
+    color: #6c757d; /* Gris par défaut */
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  }
+
+  /*
+   * Effet hover sur le bouton favoris
+   */
+  .btn-favorite:hover {
+    transform: scale(1.1); /* Agrandissement au survol */
+    background: rgba(255, 255, 255, 1); /* Fond opaque */
+    color: #dc3545; /* Rouge au survol */
+  }
+
+  /*
+   * État favori actif
+   * Cœur plein en rouge
+   */
+  .btn-favorite.is-favorite {
+    color: #dc3545; /* Rouge */
+    background: rgba(255, 255, 255, 1);
+  }
+
+  /*
+   * Effet hover sur le bouton favori actif
+   */
+  .btn-favorite.is-favorite:hover {
+    transform: scale(1.1);
+    color: #c82333; /* Rouge plus foncé */
   }
