@@ -11,17 +11,22 @@
 /*--------------------------------------------------------------
 # Font & Color Variables
 # Help: https://bootstrapmade.com/color-system/
---------------------------------------------------------------*/
 /* Fonts */
 :root {
-  --default-font: "Roboto",  system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --default-font: "Raleway",  system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --heading-font: "Raleway",  sans-serif;
-  --nav-font: "Montserrat",  sans-serif;
+  --nav-font: "Raleway",  sans-serif;
 }
 
+body {
+  background-image: var(--background-image);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
 /* Global Colors - The following color variables are used throughout the website. Updating them here will change the color scheme of the entire website */
 :root { 
-  --background-color: #ffffff; /* Background color for the entire website, including individual sections */
+  --background-image: url('/assets/img/bg/bgbg.png'); /* Background color for the entire website, including individual sections */
   --default-color: #323b3b; /* Default color used for the majority of the text content across the entire website */
   --heading-color: #163535; /* Color for headings, subheadings and title throughout the website */
   --accent-color: #2c7a7b; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
@@ -987,7 +992,7 @@ section,
 --------------------------------------------------------------*/
 .hero {
   position: relative;
-  background: linear-gradient(135deg, color-mix(in srgb, var(--accent-color), transparent 95%) 0%, color-mix(in srgb, var(--background-color), transparent 5%) 100%);
+  background: #031119;
   padding: 140px 0 60px;
   min-height: 100vh;
   display: flex;
@@ -6969,7 +6974,7 @@ section,
   position: absolute;
   left: -1rem;
   top: -0.5rem;
-  font-family: Georgia, serif;
+  font-family: "Raleway", sans-serif;
 }
 
 .service-details .service-main-content .testimonial-section .testimonial-grid .testimonial-card .client-info {
@@ -7625,7 +7630,7 @@ section,
   left: 20px;
   font-size: 8rem;
   color: color-mix(in srgb, var(--accent-color), transparent 85%);
-  font-family: serif;
+  font-family: "Raleway", sans-serif;
   line-height: 1;
 }
 

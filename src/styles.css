@@ -1,3 +1,9 @@
+body {
+  background-image: url('/assets/img/bg/bgbg.png') !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
 /* === RESET & BASE === */
 * {
   margin: 0;
@@ -10,11 +16,14 @@ html {
 }
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Raleway', sans-serif;
   font-size: 16px;
   line-height: 1.6;
   color: #1a1a2e;
-  background: #1a1a2e;
+  background-image: var(--background-image);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 /* === VARIABLES CSS === */
