@@ -204,27 +204,37 @@ export class AuthService {
   /**
    * Charger les données utilisateur (favoris, observations)
    * Appelé après login, register et checkAuthStatus
+   * Ne charge les données que côté client pour éviter les problèmes d'hydratation SSR
    */
   private loadUserData(): void {
-    // Charger les favoris
-    this.favoriteService.getFavorites().subscribe({
-      next: () => {
-        console.log('Favoris chargés avec succès');
-      },
-      error: (error) => {
-        console.error('Erreur lors du chargement des favoris:', error);
-      }
-    });
+    // Ne charger les données que côté client (pas pendant le SSR)
+    if (!this.isBrowser) {
+      return;
+    }
 
-    // Charger les observations
-    this.observationService.getObservations().subscribe({
-      next: () => {
-        console.log('Observations chargées avec succès');
-      },
-      error: (error) => {
-        console.error('Erreur lors du chargement des observations:', error);
-      }
-    });
+    // Utiliser setTimeout avec délai pour éviter de bloquer l'hydratation SSR
+    // Le délai de 500ms permet à l'hydratation de se compléter avant de charger les données
+    setTimeout(() => {
+      // Charger les favoris
+      this.favoriteService.getFavorites().subscribe({
+        next: () => {
+          console.log('Favoris chargés avec succès');
+        },
+        error: (error) => {
+          console.error('Erreur lors du chargement des favoris:', error);
+        }
+      });
+
+      // Charger les observations
+      this.observationService.getObservations().subscribe({
+        next: () => {
+          console.log('Observations chargées avec succès');
+        },
+        error: (error) => {
+          console.error('Erreur lors du chargement des observations:', error);
+        }
+      });
+    }, 500);
   }
 
   /**
