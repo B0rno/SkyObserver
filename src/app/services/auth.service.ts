@@ -8,6 +8,7 @@ import { isPlatformBrowser } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { Router } from '@angular/router';
+import { FavoriteService } from './favorite.service';
 
 /**
  * Interface pour la réponse d'inscription
@@ -96,7 +97,8 @@ export class AuthService {
 
   constructor(
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private favoriteService: FavoriteService
   ) {
     // Injecter PLATFORM_ID pour détecter l'environnement
     const platformId = inject(PLATFORM_ID);
@@ -123,6 +125,8 @@ export class AuthService {
         next: () => {
           // Le profil a été récupéré avec succès
           this.isAuthenticated.set(true);
+          // Charger les favoris après la vérification du profil
+          this.loadUserData();
         },
         error: (error) => {
           // Déconnecter SEULEMENT si le token est invalide (401)
@@ -154,6 +158,8 @@ export class AuthService {
         // Mettre à jour l'utilisateur courant
         this.currentUser.set(response.user);
         this.isAuthenticated.set(true);
+        // Charger les données utilisateur (favoris, observations)
+        this.loadUserData();
       })
     );
   }
@@ -174,6 +180,8 @@ export class AuthService {
         // Mettre à jour l'utilisateur courant
         this.currentUser.set(response.user);
         this.isAuthenticated.set(true);
+        // Charger les données utilisateur (favoris, observations)
+        this.loadUserData();
       })
     );
   }
@@ -192,6 +200,24 @@ export class AuthService {
   }
 
   /**
+   * Charger les données utilisateur (favoris, observations)
+   * Appelé après login, register et checkAuthStatus
+   */
+  private loadUserData(): void {
+    // Charger les favoris
+    this.favoriteService.getFavorites().subscribe({
+      next: () => {
+        console.log('Favoris chargés avec succès');
+      },
+      error: (error) => {
+        console.error('Erreur lors du chargement des favoris:', error);
+      }
+    });
+
+    // TODO: Charger les observations quand le service sera créé
+  }
+
+  /**
    * Déconnexion de l'utilisateur
    */
   logout(): void {
@@ -200,6 +226,8 @@ export class AuthService {
     // Réinitialiser l'utilisateur courant
     this.currentUser.set(null);
     this.isAuthenticated.set(false);
+    // Réinitialiser les favoris
+    this.favoriteService.favorites.set([]);
     // Rediriger vers la page de connexion
     this.router.navigate(['/login']);
   }
