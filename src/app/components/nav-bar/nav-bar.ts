@@ -1,6 +1,7 @@
 import { Component, HostListener, signal } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../../services/auth.service';
 
 /**
  * Composant de barre de navigation
@@ -35,6 +36,11 @@ export class NavBarComponent {
   scrolled = signal<boolean>(false);
 
   /**
+   * Constructeur avec injection du service d'authentification
+   */
+  constructor(public authService: AuthService) {}
+
+  /**
    * Écouteur d'événement de scroll de la fenêtre
    * Détecte quand l'utilisateur scroll au-delà de 50px pour changer le style de la navbar
    * @HostListener permet d'écouter les événements du DOM directement dans le composant
@@ -50,5 +56,13 @@ export class NavBarComponent {
    */
   toggleMenu() {
     this.menuOuvert.update((v: boolean) => !v);
+  }
+
+  /**
+   * Déconnexion de l'utilisateur
+   * Appelle la méthode logout du service d'authentification
+   */
+  logout() {
+    this.authService.logout();
   }
 }
