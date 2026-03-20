@@ -48,7 +48,7 @@
             </h2>
             <div class="grille-planetes">
               @for (planete of planetesOeilNu(); track planete.nom) {
-                <div class="carte-planete" [routerLink]="['/details-astre', planete.nom.toLowerCase()]">
+                <div class="carte-planete" [routerLink]="['/details-astre', formatIdURL(planete.nom)]">
                   <div class="planete-header">
                     <h3>{{ planete.nom }}</h3>
                     <span class="badge badge-oeil-nu">Œil nu</span>
@@ -99,7 +99,7 @@
             </h2>
             <div class="grille-planetes">
               @for (planete of planetesTelescope(); track planete.nom) {
-                <div class="carte-planete" [routerLink]="['/astre', planete.nom.toLowerCase()]">
+                  <div class="carte-planete" [routerLink]="['/details-astre', formatIdURL(planete.nom)]">
                   <div class="planete-header">
                     <h3>{{ planete.nom }}</h3>
                     <span class="badge badge-telescope">Télescope</span>
