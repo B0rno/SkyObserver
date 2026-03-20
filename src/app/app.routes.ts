@@ -36,6 +36,11 @@ export const routes: Routes = [
     canActivate: [authGuard]
   },
   {
+    path: 'mes-observations',
+    loadComponent: () => import('./pages/mes-observations/mes-observations').then(m => m.MesObservations),
+    canActivate: [authGuard]
+  },
+  {
     path: '**',
     redirectTo: ''
   }

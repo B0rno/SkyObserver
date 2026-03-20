@@ -9,6 +9,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { Router } from '@angular/router';
 import { FavoriteService } from './favorite.service';
+import { ObservationService } from './observation.service';
 
 /**
  * Interface pour la réponse d'inscription
@@ -98,7 +99,8 @@ export class AuthService {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private favoriteService: FavoriteService
+    private favoriteService: FavoriteService,
+    private observationService: ObservationService
   ) {
     // Injecter PLATFORM_ID pour détecter l'environnement
     const platformId = inject(PLATFORM_ID);
@@ -214,7 +216,15 @@ export class AuthService {
       }
     });
 
-    // TODO: Charger les observations quand le service sera créé
+    // Charger les observations
+    this.observationService.getObservations().subscribe({
+      next: () => {
+        console.log('Observations chargées avec succès');
+      },
+      error: (error) => {
+        console.error('Erreur lors du chargement des observations:', error);
+      }
+    });
   }
 
   /**
@@ -228,6 +238,8 @@ export class AuthService {
     this.isAuthenticated.set(false);
     // Réinitialiser les favoris
     this.favoriteService.favorites.set([]);
+    // Réinitialiser les observations
+    this.observationService.observations.set([]);
     // Rediriger vers la page de connexion
     this.router.navigate(['/login']);
   }
