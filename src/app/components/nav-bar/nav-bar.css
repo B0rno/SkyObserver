@@ -51,7 +51,7 @@
   align-items: center;
   gap: 0.5rem; /* Espace entre l'icône et le texte */
   text-decoration: none; /* Supprime le soulignement du lien */
-  color: white;
+  color: #333; /* Texte sombre */
   font-size: 1.5rem;
   font-weight: 700; /* Texte en gras */
   justify-self: start; /* Aligné à gauche dans la grille */
@@ -91,7 +91,7 @@
  * Style avec effet hover et soulignement pour le lien actif
  */
 .nav-menu a {
-  color: rgba(255, 255, 255, 0.8); /* Blanc semi-transparent */
+  color: rgba(51, 51, 51, 0.8); /* Gris foncé semi-transparent */
   text-decoration: none;
   font-weight: 500;
   padding: 0.5rem 0;
@@ -101,11 +101,11 @@
 
 /*
  * Effet hover et état actif des liens
- * Change la couleur en blanc pur
+ * Change la couleur en noir pur
  */
 .nav-menu a:hover,
 .nav-menu a.active {
-  color: white;
+  color: #333;
 }
 
 /*
@@ -210,4 +210,103 @@
   .menu-toggle {
     display: block;
   }
+}
+
+/*
+ * Section d'authentification (Login/Register ou User menu)
+ * Positionnée à droite du header
+ */
+.auth-section {
+  justify-self: end;
+  display: flex;
+  align-items: center;
+}
+
+/*
+ * Liste des liens d'authentification (Login/Register)
+ * Affichés quand l'utilisateur n'est PAS connecté
+ */
+.auth-links {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+/*
+ * Bouton de connexion
+ * Style simple avec bordure
+ */
+.btn-login {
+  color: #333;
+  text-decoration: none;
+  padding: 0.5rem 1.2rem;
+  border: 1px solid rgba(51, 51, 51, 0.3);
+  border-radius: 6px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.btn-login:hover {
+  color: #667eea;
+  border-color: #667eea;
+  background: rgba(102, 126, 234, 0.05);
+}
+
+/*
+ * Bouton d'inscription
+ * Style avec fond coloré
+ */
+.btn-register {
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 1.2rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 6px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+}
+
+.btn-register:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.5);
+}
+
+/*
+ * Menu utilisateur connecté
+ * Affiche le nom d'utilisateur et le bouton de déconnexion
+ */
+.user-menu {
+  gap: 1rem;
+}
+
+/*
+ * Nom d'utilisateur affiché
+ */
+.username {
+  color: #333;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  background: rgba(102, 126, 234, 0.1);
+  border-radius: 6px;
+}
+
+/*
+ * Bouton de déconnexion
+ */
+.btn-logout {
+  color: #333;
+  background: transparent;
+  border: 1px solid rgba(51, 51, 51, 0.3);
+  padding: 0.5rem 1.2rem;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-logout:hover {
+  color: #ef4444;
+  border-color: #ef4444;
+  background: rgba(239, 68, 68, 0.05);
 }
