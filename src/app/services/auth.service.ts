@@ -3,7 +3,8 @@
  * Gère la connexion, l'inscription, la déconnexion et le stockage du token JWT
  */
 
-import { Injectable, signal } from '@angular/core';
+import { Injectable, signal, PLATFORM_ID, inject } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { Router } from '@angular/router';
@@ -88,12 +89,23 @@ export class AuthService {
    */
   isAuthenticated = signal<boolean>(false);
 
+  /**
+   * Vérifier si on est dans le navigateur, car localStorage n'est pas disponible côté serveur
+   */
+  private isBrowser: boolean;
+
   constructor(
     private http: HttpClient,
     private router: Router
   ) {
-    // Vérifier si un token existe au chargement du service
-    this.checkAuthStatus();
+    // Injecter PLATFORM_ID pour détecter l'environnement
+    const platformId = inject(PLATFORM_ID);
+    this.isBrowser = isPlatformBrowser(platformId);
+
+    // Vérifier si un token existe au chargement du service (seulement côté client)
+    if (this.isBrowser) {
+      this.checkAuthStatus();
+    }
   }
 
   /**
@@ -189,7 +201,9 @@ export class AuthService {
    * @param token Token JWT
    */
   private setToken(token: string): void {
-    localStorage.setItem('auth_token', token);
+    if (this.isBrowser) {
+      localStorage.setItem('auth_token', token);
+    }
   }
 
   /**
@@ -197,13 +211,18 @@ export class AuthService {
    * @returns Token JWT ou null
    */
   getToken(): string | null {
-    return localStorage.getItem('auth_token');
+    if (this.isBrowser) {
+      return localStorage.getItem('auth_token');
+    }
+    return null;
   }
 
   /**
    * Supprimer le token JWT du localStorage
    */
   private removeToken(): void {
-    localStorage.removeItem('auth_token');
+    if (this.isBrowser) {
+      localStorage.removeItem('auth_token');
+    }
   }
 }
