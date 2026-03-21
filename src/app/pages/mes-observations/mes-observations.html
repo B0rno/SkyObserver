@@ -81,13 +81,22 @@
                 <h5 class="card-title mb-0">
                   {{ observation.planetName }}
                 </h5>
-                <button
-                  (click)="deleteObservation(observation)"
-                  class="btn btn-sm btn-outline-danger"
-                  title="Supprimer l'observation"
-                >
-                  <i class="bi bi-trash"></i>
-                </button>
+                <div class="btn-group">
+                  <a
+                    [routerLink]="['/modifier-observation', observation.id]"
+                    class="btn btn-sm btn-outline-danger"
+                    title="Modifier l'observation"
+                  >
+                    <i class="bi bi-pencil"></i>
+                  </a>
+                  <button
+                    (click)="deleteObservation(observation)"
+                    class="btn btn-sm btn-outline-danger"
+                    title="Supprimer l'observation"
+                  >
+                    <i class="bi bi-trash"></i>
+                  </button>
+                </div>
               </div>
 
               <!-- Corps de la carte -->

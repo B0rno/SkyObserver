@@ -46,6 +46,11 @@ export const routes: Routes = [
     canActivate: [authGuard]
   },
   {
+    path: 'modifier-observation/:id',
+    loadComponent: () => import('./pages/modifier-observation/modifier-observation').then(m => m.ModifierObservation),
+    canActivate: [authGuard]
+  },
+  {
     path: '**',
     redirectTo: ''
   }
