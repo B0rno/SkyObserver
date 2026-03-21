@@ -49,6 +49,15 @@
         <li>
           <a routerLink="/glossaire" routerLinkActive="active">Glossaire</a>
         </li>
+        <!-- Lien Mes Favoris (visible uniquement si connecté) -->
+        @if (authService.isAuthenticated()) {
+          <li>
+            <a routerLink="/mes-favoris" routerLinkActive="active">Mes Favoris</a>
+          </li>
+          <li>
+            <a routerLink="/mes-observations" routerLinkActive="active">Mes Observations</a>
+          </li>
+        }
       </ul>
     </nav>
 

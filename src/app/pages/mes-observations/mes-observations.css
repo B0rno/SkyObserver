@@ -1,0 +1,222 @@
+/* Conteneur principal */
+.observations-container {
+  min-height: 100vh;
+  padding-top: 80px;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+/* En-tête de la page */
+.page-header h1 {
+  color: #2c3e50;
+  font-weight: 700;
+}
+
+.page-header .lead {
+  color: #7f8c8d;
+}
+
+/* État vide */
+.empty-state {
+  background: white;
+  border-radius: 16px;
+  padding: 3rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.empty-state h3 {
+  color: #2c3e50;
+  font-weight: 600;
+}
+
+/* Barre d'actions */
+.actions-bar {
+  background: white;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+/* Barre de recherche */
+.search-box {
+  position: relative;
+}
+
+.search-box i {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #7f8c8d;
+  font-size: 1.1rem;
+}
+
+.search-box .form-control {
+  padding-left: 3rem;
+  border-radius: 12px;
+  border: 2px solid #e1e8ed;
+  transition: all 0.3s ease;
+}
+
+.search-box .form-control:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+}
+
+/* Carte d'observation */
+.observation-card {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.observation-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* En-tête de la carte */
+.observation-card .card-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 1.25rem;
+  border-bottom: none;
+}
+
+.observation-card .card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.planet-emoji {
+  font-size: 1.5rem;
+}
+
+/* Bouton de suppression */
+.observation-card .card-header .btn-outline-danger {
+  border-color: rgba(255, 255, 255, 0.5);
+  color: white;
+}
+
+.observation-card .card-header .btn-outline-danger:hover {
+  background: rgba(220, 53, 69, 0.2);
+  border-color: white;
+}
+
+/* Corps de la carte */
+.observation-card .card-body {
+  padding: 1.5rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Informations d'observation */
+.observation-info {
+  background: #f8f9fa;
+  padding: 1rem;
+  border-radius: 12px;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  color: #2c3e50;
+}
+
+.info-item:last-child {
+  margin-bottom: 0;
+}
+
+.info-item i {
+  color: #667eea;
+}
+
+/* Données techniques */
+.technical-data {
+  background: #f0f3ff;
+  padding: 1rem;
+  border-radius: 12px;
+}
+
+.technical-data h6 {
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.75rem;
+}
+
+.data-badge {
+  background: white;
+  padding: 0.75rem;
+  border-radius: 8px;
+  text-align: center;
+  border: 1px solid #e1e8ed;
+}
+
+.data-badge small {
+  display: block;
+  font-size: 0.75rem;
+  margin-bottom: 0.25rem;
+}
+
+.data-badge .fw-bold {
+  font-size: 1.1rem;
+  color: #667eea;
+}
+
+/* Section notes */
+.notes-section {
+  background: #fffbf0;
+  padding: 1rem;
+  border-radius: 12px;
+  border-left: 4px solid #ffd700;
+}
+
+.notes-section h6 {
+  font-size: 0.875rem;
+  color: #7f8c8d;
+  margin-bottom: 0.5rem;
+}
+
+.notes-text {
+  margin: 0;
+  color: #2c3e50;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* Statistiques */
+.stats-section {
+  background: white;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.stats-card h4 {
+  color: #667eea;
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.stats-card p {
+  font-size: 1rem;
+  color: #7f8c8d;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .actions-bar .btn {
+    width: 100%;
+  }
+
+  .data-badge {
+    margin-bottom: 0.5rem;
+  }
+}

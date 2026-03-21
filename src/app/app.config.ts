@@ -10,7 +10,9 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
-    provideClientHydration(withEventReplay()),
+    // Hydratation SSR avec gestion des tâches asynchrones
+    // Le délai de 100ms dans auth.service.loadUserData() évite les conflits
+    //provideClientHydration(withEventReplay()), // Erreur NG0506, renvoie un warniing dans la console : "Hydration failed: Task was not completed within the expected time frame."
     provideHttpClient(
       withFetch(),
       withInterceptors([authInterceptor])

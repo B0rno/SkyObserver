@@ -1,5 +1,18 @@
 <a [routerLink]="['/details-astre', id]" class="map-astre">
-    <div class="map-image">      @if (image) {
+    <!-- Bouton Favoris (visible uniquement si connecté) -->
+    @if (authService.isAuthenticated()) {
+      <button
+        (click)="toggleFavorite($event)"
+        class="btn-favorite"
+        [class.is-favorite]="isFavorite()"
+        [title]="isFavorite() ? 'Retirer des favoris' : 'Ajouter aux favoris'"
+      >
+        <i [class]="isFavorite() ? 'bi bi-heart-fill' : 'bi bi-heart'"></i>
+      </button>
+    }
+
+    <div class="map-image">
+      @if (image) {
         <img [src]="image" [alt]="nom" />
       }
     </div>

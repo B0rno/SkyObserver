@@ -8,6 +8,8 @@ import { isPlatformBrowser } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { Router } from '@angular/router';
+import { FavoriteService } from './favorite.service';
+import { ObservationService } from './observation.service';
 
 /**
  * Interface pour la réponse d'inscription
@@ -96,7 +98,9 @@ export class AuthService {
 
   constructor(
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private favoriteService: FavoriteService,
+    private observationService: ObservationService
   ) {
     // Injecter PLATFORM_ID pour détecter l'environnement
     const platformId = inject(PLATFORM_ID);
@@ -114,15 +118,25 @@ export class AuthService {
   private checkAuthStatus(): void {
     const token = this.getToken();
     if (token) {
-      // Si un token existe, récupérer le profil utilisateur
+      // Considérer l'utilisateur comme authentifié si un token existe
+      // La vérification réelle sera faite lors des requêtes API
+      this.isAuthenticated.set(true);
+
+      // Essayer de récupérer le profil (optionnel)
       this.getProfile().subscribe({
         next: () => {
           // Le profil a été récupéré avec succès
           this.isAuthenticated.set(true);
+          // Charger les favoris après la vérification du profil
+          this.loadUserData();
         },
-        error: () => {
-          // Le token est invalide ou expiré
-          this.logout();
+        error: (error) => {
+          // Déconnecter SEULEMENT si le token est invalide (401)
+          // Pas si c'est juste une erreur réseau
+          if (error.status === 401) {
+            this.logout();
+          }
+          // Sinon, garder l'utilisateur connecté
         }
       });
     }
@@ -146,6 +160,8 @@ export class AuthService {
         // Mettre à jour l'utilisateur courant
         this.currentUser.set(response.user);
         this.isAuthenticated.set(true);
+        // Charger les données utilisateur (favoris, observations)
+        this.loadUserData();
       })
     );
   }
@@ -166,6 +182,8 @@ export class AuthService {
         // Mettre à jour l'utilisateur courant
         this.currentUser.set(response.user);
         this.isAuthenticated.set(true);
+        // Charger les données utilisateur (favoris, observations)
+        this.loadUserData();
       })
     );
   }
@@ -184,6 +202,42 @@ export class AuthService {
   }
 
   /**
+   * Charger les données utilisateur (favoris, observations)
+   * Appelé après login, register et checkAuthStatus
+   * Ne charge les données que côté client pour éviter les problèmes d'hydratation SSR
+   */
+  private loadUserData(): void {
+    // Ne charger les données que côté client (pas pendant le SSR)
+    if (!this.isBrowser) {
+      return;
+    }
+
+    // Utiliser setTimeout avec délai pour éviter de bloquer l'hydratation SSR
+    // Le délai de 500ms permet à l'hydratation de se compléter avant de charger les données
+    setTimeout(() => {
+      // Charger les favoris
+      this.favoriteService.getFavorites().subscribe({
+        next: () => {
+          console.log('Favoris chargés avec succès');
+        },
+        error: (error) => {
+          console.error('Erreur lors du chargement des favoris:', error);
+        }
+      });
+
+      // Charger les observations
+      this.observationService.getObservations().subscribe({
+        next: () => {
+          console.log('Observations chargées avec succès');
+        },
+        error: (error) => {
+          console.error('Erreur lors du chargement des observations:', error);
+        }
+      });
+    }, 500);
+  }
+
+  /**
    * Déconnexion de l'utilisateur
    */
   logout(): void {
@@ -192,6 +246,10 @@ export class AuthService {
     // Réinitialiser l'utilisateur courant
     this.currentUser.set(null);
     this.isAuthenticated.set(false);
+    // Réinitialiser les favoris
+    this.favoriteService.favorites.set([]);
+    // Réinitialiser les observations
+    this.observationService.observations.set([]);
     // Rediriger vers la page de connexion
     this.router.navigate(['/login']);
   }
