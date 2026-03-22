@@ -16,11 +16,10 @@ model User {
   username     String        @unique
   password     String
   createdAt    DateTime      @default(now())
-  
+
   // Relations
   favorites    Favorite[]
   observations Observation[]
-  lists        List[]
 }
 
 // Table Favorite : Planètes favorites des utilisateurs
@@ -50,25 +49,7 @@ model Observation {
   altitude    Float?
   azimuth     Float?
   createdAt   DateTime @default(now())
-  
+
   // Relation avec User
   user  User   @relation(fields: [userId], references: [id], onDelete: Cascade)
-  
-  // Relation Many-to-Many avec List
-  lists List[]
-}
-
-// Table List : Listes personnalisées d'observations
-model List {
-  id           Int      @id @default(autoincrement())
-  userId       Int
-  name         String
-  description  String?
-  createdAt    DateTime @default(now())
-  
-  // Relation avec User
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-  
-  // Relation Many-to-Many avec Observation
-  observations Observation[]
 }

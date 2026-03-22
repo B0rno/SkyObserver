@@ -47,3 +47,7 @@ src/environments/environment.development.ts
 # Backend files
 /Backend/node_modules
 /Backend/.env
+
+# Ignorer les dossiers vendor (utiliser npm à la place)
+public/assets/vendor/*
+!public/assets/vendor/.gitkeep
