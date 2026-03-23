@@ -11,14 +11,14 @@
 
 ## Table des matières
 
-- [Fonctionnalités](#-fonctionnalités)
-- [Technologies](#-technologies)
-- [Prérequis](#-prérequis)
-- [Installation](#-installation)
-- [Démarrage](#-démarrage)
-- [Utilisation](#-utilisation)
-- [APIs externes](#-apis-externes)
-- [Auteur](#-auteur)
+- Fonctionnalités
+- Technologies
+- Prérequis
+- Installation
+- Démarrage
+- Utilisation
+- APIs externes
+- Auteur
 
 ---
 
@@ -215,6 +215,7 @@ L'application utilise **The Solar System OpenData API** pour récupérer les inf
      apiKey: 'votre-cle-api-reelle-ici'  // Remplacez par votre clé
    };
    ```
+
 ---
 
 ## Démarrage
@@ -326,7 +327,7 @@ L'application utilise plusieurs APIs publiques :
 
 **Thibaut Gasnier (tibogas)**
 
-**William Littre  (LWilliam)**
+**William Littre (LWilliam)**
 
 **Louison Roquain (LouisonROQ1)**
 
