@@ -1,0 +1,192 @@
+<!-- Conteneur principal de la page Mes Observations -->
+<div class="observations-container">
+  <app-nav-bar />
+  <div class="container py-5">
+
+    <!-- En-tête de la page -->
+    <div class="page-header text-center mb-5">
+      <h1 class="display-4 mb-3">Mes Observations</h1>
+      <p class="lead text-muted">
+        Consultez et gérez vos observations astronomiques
+      </p>
+    </div>
+
+    <!-- État de chargement -->
+    @if (loading) {
+      <div class="text-center py-5">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Chargement...</span>
+        </div>
+        <p class="mt-3 text-muted">Chargement de vos observations...</p>
+      </div>
+    }
+
+    <!-- Message d'erreur -->
+    @else if (errorMessage) {
+      <div class="alert alert-danger" role="alert">
+        <i class="bi bi-exclamation-triangle-fill me-2"></i>
+        {{ errorMessage }}
+        <button (click)="loadObservations()" class="btn btn-sm btn-outline-danger ms-3">
+          Réessayer
+        </button>
+      </div>
+    }
+
+    <!-- Liste vide -->
+    @else if (observationService.observations().length === 0) {
+      <div class="empty-state text-center py-5">
+        <h3 class="mb-3">Aucune observation pour le moment</h3>
+        <p class="text-muted mb-4">
+          Commencez à enregistrer vos observations astronomiques !
+        </p>
+        <a routerLink="/nouvelle-observation" class="btn btn-primary">
+          <i class="bi bi-plus-circle me-2"></i>
+          Nouvelle observation
+        </a>
+      </div>
+    }
+
+    <!-- Liste des observations -->
+    @else {
+      <!-- Barre de recherche et bouton nouvelle observation -->
+      <div class="actions-bar mb-4">
+        <div class="row g-3 align-items-center">
+          <div class="col-md-8">
+            <div class="search-box">
+              <i class="bi bi-search"></i>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Rechercher par planète ou lieu..."
+                [(ngModel)]="searchFilter"
+              />
+            </div>
+          </div>
+          <div class="col-md-4 text-end">
+            <a routerLink="/nouvelle-observation" class="btn btn-primary">
+              <i class="bi bi-plus-circle me-2"></i>
+              Nouvelle observation
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Liste filtrée -->
+      <div class="row g-4">
+        @for (observation of filteredObservations; track observation.id) {
+          <div class="col-12 col-lg-6">
+            <div class="observation-card">
+              <!-- En-tête de la carte -->
+              <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="card-title mb-0">
+                  {{ observation.planetName }}
+                </h5>
+                <div class="btn-group">
+                  <a
+                    [routerLink]="['/modifier-observation', observation.id]"
+                    class="btn btn-sm btn-outline-danger"
+                    title="Modifier l'observation"
+                  >
+                    <i class="bi bi-pencil"></i>
+                  </a>
+                  <button
+                    (click)="deleteObservation(observation)"
+                    class="btn btn-sm btn-outline-danger"
+                    title="Supprimer l'observation"
+                  >
+                    <i class="bi bi-trash"></i>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Corps de la carte -->
+              <div class="card-body">
+                <!-- Date et lieu -->
+                <div class="observation-info mb-3">
+                  <div class="info-item">
+                    <i class="bi bi-calendar-event me-2"></i>
+                    <strong>Date :</strong> {{ formatDate(observation.date) }}
+                  </div>
+                  <div class="info-item">
+                    <i class="bi bi-geo-alt me-2"></i>
+                    <strong>Lieu :</strong> {{ observation.location }}
+                  </div>
+                  @if (observation.weather) {
+                    <div class="info-item">
+                      <i class="bi bi-cloud me-2"></i>
+                      <strong>Météo :</strong> {{ observation.weather }}
+                    </div>
+                  }
+                </div>
+
+                <!-- Données techniques -->
+                @if (observation.magnitude !== null || observation.altitude !== null || observation.azimuth !== null) {
+                  <div class="technical-data mb-3">
+                    <h6 class="text-muted mb-2">Données techniques</h6>
+                    <div class="row g-2">
+                      @if (observation.magnitude !== null) {
+                        <div class="col-4">
+                          <div class="data-badge">
+                            <small class="text-muted">Magnitude</small>
+                            <div class="fw-bold">{{ observation.magnitude }}</div>
+                          </div>
+                        </div>
+                      }
+                      @if (observation.altitude !== null) {
+                        <div class="col-4">
+                          <div class="data-badge">
+                            <small class="text-muted">Altitude</small>
+                            <div class="fw-bold">{{ observation.altitude }}°</div>
+                          </div>
+                        </div>
+                      }
+                      @if (observation.azimuth !== null) {
+                        <div class="col-4">
+                          <div class="data-badge">
+                            <small class="text-muted">Azimuth</small>
+                            <div class="fw-bold">{{ observation.azimuth }}°</div>
+                          </div>
+                        </div>
+                      }
+                    </div>
+                  </div>
+                }
+
+                <!-- Notes -->
+                @if (observation.notes) {
+                  <div class="notes-section">
+                    <h6 class="text-muted mb-2">
+                      <i class="bi bi-sticky me-2"></i>Notes
+                    </h6>
+                    <p class="notes-text">{{ observation.notes }}</p>
+                  </div>
+                }
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+
+      <!-- Statistiques -->
+      <div class="stats-section mt-5 text-center">
+        <div class="row g-4">
+          <div class="col-md-6">
+            <div class="stats-card">
+              <h4 class="mb-2">{{ observationService.observations().length }}</h4>
+              <p class="text-muted mb-0">
+                {{ observationService.observations().length === 1 ? 'observation' : 'observations' }}
+              </p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="stats-card">
+              <h4 class="mb-2">{{ filteredObservations.length }}</h4>
+              <p class="text-muted mb-0">résultats affichés</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    }
+
+  </div>
+</div>

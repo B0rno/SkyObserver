@@ -49,14 +49,42 @@
         <li>
           <a routerLink="/glossaire" routerLinkActive="active">Glossaire</a>
         </li>
+        <!-- Lien Mes Favoris (visible uniquement si connecté) -->
+        @if (authService.isAuthenticated()) {
+          <li>
+            <a routerLink="/mes-favoris" routerLinkActive="active">Mes Favoris</a>
+          </li>
+          <li>
+            <a routerLink="/mes-observations" routerLinkActive="active">Mes Observations</a>
+          </li>
+        }
       </ul>
     </nav>
 
     <!--
-      Spacer pour équilibrer le layout en grille
-      Occupe la 3ème colonne pour centrer la navigation
+      Section d'authentification
+      Affiche différents liens selon que l'utilisateur est connecté ou non
     -->
-    <div class="logo-spacer"></div>
+    <div class="auth-section">
+      <!-- Si l'utilisateur n'est PAS connecté -->
+      @if (!authService.isAuthenticated()) {
+        <ul class="auth-links d-flex list-unstyled mb-0">
+          <li>
+            <a routerLink="/login" routerLinkActive="active" class="btn-login">Connexion</a>
+          </li>
+          <li>
+            <a routerLink="/register" routerLinkActive="active" class="btn-register">Inscription</a>
+          </li>
+        </ul>
+      }
+      <!-- Si l'utilisateur EST connecté -->
+      @else {
+        <div class="user-menu d-flex align-items-center">
+          <span class="username">{{ authService.currentUser()?.username }}</span>
+          <button (click)="logout()" class="btn-logout">Déconnexion</button>
+        </div>
+      }
+    </div>
 
   </div>
 </header>

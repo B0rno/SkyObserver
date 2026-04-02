@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
+import { Component, OnInit, Inject, PLATFORM_ID, ChangeDetectorRef } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { Router } from '@angular/router';
 import { NavBarComponent } from '../../components/nav-bar/nav-bar';
@@ -31,7 +31,7 @@ export class Accueil implements OnInit {
 
   /**
    * Données météo actuelles
-   * Initialisées avec des valeurs par défaut (icône hourglass en attente)
+   * Initialisées avec des valeurs par défaut
    */
   meteo: MeteoData = {
     temperature: 0,
@@ -53,7 +53,8 @@ export class Accueil implements OnInit {
     private router: Router,
     private meteoService: MeteoService,
     private actuService: ActuService,
-    @Inject(PLATFORM_ID) private platformId: Object
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private cdr: ChangeDetectorRef
   ) {}
 
   /**
@@ -70,6 +71,7 @@ export class Accueil implements OnInit {
       this.actuService.getDernieresActus(4).subscribe({
         next: (actusReelles) => {
           this.actualites = actusReelles;
+          this.cdr.detectChanges(); // Forcer la détection de changement
         },
         error: (err) => console.error("Erreur de chargement des actus", err)
       });

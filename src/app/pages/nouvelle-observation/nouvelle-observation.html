@@ -1,0 +1,231 @@
+<!-- Conteneur principal de la page Nouvelle Observation -->
+<div class="observation-container">
+  <app-nav-bar />
+  <div class="container py-5">
+
+    <!-- En-tête de la page -->
+    <div class="page-header text-center mb-5">
+      <h1 class="display-4 mb-3">Nouvelle Observation</h1>
+      <p class="lead text-muted">
+        Enregistrez votre observation astronomique
+      </p>
+    </div>
+
+    <!-- Message d'erreur global -->
+    @if (errorMessage) {
+      <div class="alert alert-danger" role="alert">
+        <i class="bi bi-exclamation-triangle-fill me-2"></i>
+        {{ errorMessage }}
+      </div>
+    }
+
+    <!-- Formulaire -->
+    <div class="form-card">
+      <form [formGroup]="observationForm" (ngSubmit)="onSubmit()">
+
+        <!-- Section 1 : Informations de base -->
+        <div class="form-section">
+          <h5 class="section-title">
+            <i class="bi bi-info-circle me-2"></i>
+            Informations de base
+          </h5>
+
+          <div class="row g-3">
+            <!-- Planète -->
+            <div class="col-md-6">
+              <label for="planetName" class="form-label">
+                Planète <span class="text-danger">*</span>
+              </label>
+              <select
+                id="planetName"
+                class="form-select"
+                [class.is-invalid]="isFieldInvalid('planetName')"
+                formControlName="planetName"
+              >
+                <option value="">Sélectionnez une planète</option>
+                @for (planet of planets; track planet.name) {
+                  <option [value]="planet.name">{{ planet.name }}</option>
+                }
+              </select>
+              @if (isFieldInvalid('planetName')) {
+                <div class="invalid-feedback">{{ getErrorMessage('planetName') }}</div>
+              }
+            </div>
+
+            <!-- Date -->
+            <div class="col-md-6">
+              <label for="date" class="form-label">
+                Date <span class="text-danger">*</span>
+              </label>
+              <input
+                type="date"
+                id="date"
+                class="form-control"
+                [class.is-invalid]="isFieldInvalid('date')"
+                formControlName="date"
+              />
+              @if (isFieldInvalid('date')) {
+                <div class="invalid-feedback">{{ getErrorMessage('date') }}</div>
+              }
+            </div>
+
+            <!-- Lieu -->
+            <div class="col-12">
+              <label for="location" class="form-label">
+                Lieu <span class="text-danger">*</span>
+              </label>
+              <input
+                type="text"
+                id="location"
+                class="form-control"
+                [class.is-invalid]="isFieldInvalid('location')"
+                formControlName="location"
+                placeholder="Ex: Paris, France"
+              />
+              @if (isFieldInvalid('location')) {
+                <div class="invalid-feedback">{{ getErrorMessage('location') }}</div>
+              }
+            </div>
+
+            <!-- Météo -->
+            <div class="col-12">
+              <label for="weather" class="form-label">Météo</label>
+              <input
+                type="text"
+                id="weather"
+                class="form-control"
+                formControlName="weather"
+                placeholder="Ex: Ciel dégagé, quelques nuages..."
+              />
+              <small class="form-text text-muted">Conditions météorologiques (optionnel)</small>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 2 : Données techniques -->
+        <div class="form-section">
+          <h5 class="section-title">
+            <i class="bi bi-graph-up me-2"></i>
+            Données techniques (optionnel)
+          </h5>
+
+          <div class="row g-3">
+            <!-- Magnitude -->
+            <div class="col-md-4">
+              <label for="magnitude" class="form-label">Magnitude</label>
+              <input
+                type="number"
+                id="magnitude"
+                class="form-control"
+                [class.is-invalid]="isFieldInvalid('magnitude')"
+                formControlName="magnitude"
+                step="0.1"
+                placeholder="-2.5"
+              />
+              @if (isFieldInvalid('magnitude')) {
+                <div class="invalid-feedback">{{ getErrorMessage('magnitude') }}</div>
+              }
+              <small class="form-text text-muted">Luminosité apparente</small>
+            </div>
+
+            <!-- Altitude -->
+            <div class="col-md-4">
+              <label for="altitude" class="form-label">Altitude (°)</label>
+              <input
+                type="number"
+                id="altitude"
+                class="form-control"
+                [class.is-invalid]="isFieldInvalid('altitude')"
+                formControlName="altitude"
+                min="0"
+                max="90"
+                placeholder="45"
+              />
+              @if (isFieldInvalid('altitude')) {
+                <div class="invalid-feedback">{{ getErrorMessage('altitude') }}</div>
+              }
+              <small class="form-text text-muted">Hauteur au-dessus de l'horizon (0-90°)</small>
+            </div>
+
+            <!-- Azimuth -->
+            <div class="col-md-4">
+              <label for="azimuth" class="form-label">Azimuth (°)</label>
+              <input
+                type="number"
+                id="azimuth"
+                class="form-control"
+                [class.is-invalid]="isFieldInvalid('azimuth')"
+                formControlName="azimuth"
+                min="0"
+                max="360"
+                placeholder="180"
+              />
+              @if (isFieldInvalid('azimuth')) {
+                <div class="invalid-feedback">{{ getErrorMessage('azimuth') }}</div>
+              }
+              <small class="form-text text-muted">Direction (0-360°, 0=Nord)</small>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 3 : Notes -->
+        <div class="form-section">
+          <h5 class="section-title">
+            <i class="bi bi-sticky me-2"></i>
+            Notes personnelles (optionnel)
+          </h5>
+
+          <div class="row">
+            <div class="col-12">
+              <label for="notes" class="form-label">Notes</label>
+              <textarea
+                id="notes"
+                class="form-control"
+                formControlName="notes"
+                rows="4"
+                placeholder="Vos observations, détails supplémentaires, impressions..."
+              ></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- Boutons d'action -->
+        <div class="form-actions">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            (click)="onCancel()"
+            [disabled]="isSubmitting"
+          >
+            <i class="bi bi-x-circle me-2"></i>
+            Annuler
+          </button>
+          <button
+            type="submit"
+            class="btn btn-primary"
+            [disabled]="isSubmitting"
+          >
+            @if (isSubmitting) {
+              <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+              Enregistrement...
+            } @else {
+              <i class="bi bi-check-circle me-2"></i>
+              Enregistrer l'observation
+            }
+          </button>
+        </div>
+
+      </form>
+    </div>
+
+    <!-- Aide -->
+    <div class="help-section mt-4">
+      <div class="alert alert-info">
+        <i class="bi bi-lightbulb me-2"></i>
+        <strong>Astuce :</strong> Les champs marqués d'un astérisque (<span class="text-danger">*</span>) sont obligatoires.
+        Les données techniques et les notes sont optionnelles mais enrichissent votre observation.
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,55 @@
+// Configuration du générateur Prisma Client
+generator client {
+  provider = "prisma-client-js"
+}
+
+// Configuration de la source de données PostgreSQL
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Table User : Utilisateurs de l'application
+model User {
+  id           Int           @id @default(autoincrement())
+  email        String        @unique
+  username     String        @unique
+  password     String
+  createdAt    DateTime      @default(now())
+
+  // Relations
+  favorites    Favorite[]
+  observations Observation[]
+}
+
+// Table Favorite : Planètes favorites des utilisateurs
+model Favorite {
+  id         Int      @id @default(autoincrement())
+  userId     Int
+  planetName String
+  createdAt  DateTime @default(now())
+  
+  // Relation avec User
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  // Un utilisateur ne peut pas avoir 2x la même planète en favori
+  @@unique([userId, planetName])
+}
+
+// Table Observation : Carnets d'observation astronomique
+model Observation {
+  id          Int      @id @default(autoincrement())
+  userId      Int
+  planetName  String
+  date        DateTime
+  location    String
+  weather     String?
+  notes       String?
+  magnitude   Float?
+  altitude    Float?
+  azimuth     Float?
+  createdAt   DateTime @default(now())
+
+  // Relation avec User
+  user  User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+}

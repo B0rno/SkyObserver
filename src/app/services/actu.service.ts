@@ -26,7 +26,7 @@ export class ActuService {
    */
   getDernieresActus(limit: number = 12): Observable<Actu[]> {
     // L'API qui renvoie les X derniers articles 
-    const apiUrl = `https://api.spaceflightnewsapi.net/v4/articles/?limit=${limit}&search=astronomy`;
+    const apiUrl = `https://api.spaceflightnewsapi.net/v4/articles/?limit=${limit}&search=space`;
 
     return this.http.get<any>(apiUrl).pipe(
       map(response => {

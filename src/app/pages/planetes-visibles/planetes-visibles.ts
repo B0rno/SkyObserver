@@ -1,5 +1,5 @@
 import { Component, OnInit, signal } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { NavBarComponent } from '../../components/nav-bar/nav-bar';
 import { GeocodingService, Coordonnees } from '../../services/geocoding.service';
@@ -22,7 +22,7 @@ import { AstronomyService, PlaneteVisible } from '../../services/astronomy.servi
 @Component({
   selector: 'app-planetes-visibles',
   standalone: true,
-  imports: [CommonModule, NavBarComponent],
+  imports: [CommonModule, NavBarComponent, RouterLink],
   templateUrl: './planetes-visibles.html',
   styleUrl: './planetes-visibles.css',
 })
@@ -138,5 +138,12 @@ export class PlanetesVisibles implements OnInit {
    */
   formatHeure(date: Date): string {
     return date.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
+  }
+
+  /**
+   * Enlève les accents et met en minuscules pour l'URL
+   */
+  formatIdURL(nom: string): string {
+    return nom.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
   }
 }
