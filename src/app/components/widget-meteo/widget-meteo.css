@@ -3,7 +3,8 @@
  * Carte avec fond, ombre et coins arrondis
  */
 .widget-meteo {
-    background: var(--surface-color, #e0e9f2); /* Couleur de fond du thème */
+    background: rgba(224, 233, 242, 0.7);
+    backdrop-filter: blur(10px);
     border-radius: 12px;
     padding: 1.5rem;
     box-shadow: 0 2px 15px rgba(3, 17, 25, 0.1); /* Ombre portée douce */
@@ -17,7 +18,7 @@
     margin: 0 0 1rem;
     font-size: 0.85rem;
     font-weight: 600;
-    color: #4f7ca3; /* Bleu moyen */
+    color: #031119;
     letter-spacing: 1px; /* Espacement des lettres pour un effet élégant */
   }
 
@@ -79,7 +80,7 @@
    * Texte plus petit sous la température
    */
   .condition {
-    color: #4f7ca3; /* Bleu moyen */
+    color: #031119;
     font-size: 1rem;
   }
 

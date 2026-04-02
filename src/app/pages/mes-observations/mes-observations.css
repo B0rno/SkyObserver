@@ -2,7 +2,7 @@
 .observations-container {
   min-height: 100vh;
   padding-top: 80px;
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  background: url('/assets/img/2ndbg.jpg') center/cover no-repeat fixed;
 }
 
 /* En-tête de la page */

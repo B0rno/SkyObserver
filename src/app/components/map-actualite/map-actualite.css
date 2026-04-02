@@ -63,7 +63,7 @@
    * Lien stylisé avec icône et flexbox pour l'alignement
    */
   .readmore {
-    color: var(--accent-color, #4f7ca3);
+    color: #031119;
     display: flex;
     align-items: center; /* Centre verticalement le texte et l'icône */
     font-weight: 600;
@@ -86,7 +86,7 @@
    */
   .post-item:hover .post-title,
   .post-item:hover .readmore {
-    color: var(--accent-color, #4f7ca3);
+    color: #4f7ca3;
   }
 
   /*

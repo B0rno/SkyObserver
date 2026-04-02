@@ -1,3 +1,8 @@
+.page-actualites {
+  min-height: 100vh;
+  background: url('/assets/img/2ndbg.jpg') center/cover no-repeat fixed;
+}
+
   .container-centre {
   max-width: 900px; /* C'est ça qui "coupe" les extrémités ! */
   margin: 0 auto;   /* Centre la boîte parfaitement au milieu */
@@ -9,6 +14,10 @@
   /* On force exactement 2 belles colonnes au lieu de l'étirer */
   grid-template-columns: repeat(2, 1fr);
   gap: 2rem; /* L'espace entre les cartes */
+  }
+
+  .section-liste {
+  background: #ffffff;
   }
   
 .titre-page {

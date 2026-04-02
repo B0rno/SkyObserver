@@ -1,6 +1,5 @@
 .page-accueil {
     min-height: 100vh;
-    background: url('/assets/img/space-bg.jpg') center/cover no-repeat fixed;
   }
   
   /* Hero Section */
@@ -11,6 +10,7 @@
     justify-content: center;
     text-align: center;
     padding: 120px 2rem 2rem;
+    background: #000000;
   }
   
   .hero-content {
@@ -34,6 +34,7 @@
   /* Section Bottom */
   .section-bottom {
     padding: 2rem 0 4rem;
+    background: url('/assets/img/940.jpg') center/cover no-repeat fixed;
   }
   
   .container {
@@ -43,7 +44,8 @@
   }
   
   .bloc-actualites {
-    background: rgba(224, 233, 242, 0.95);
+    background: rgba(224, 233, 242, 0.7);
+    backdrop-filter: blur(10px);
     border-radius: 16px;
     padding: 1.5rem;
   }
@@ -67,7 +69,7 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    color: #4f7ca3;
+    color: #031119;
     text-decoration: none;
     font-size: 0.85rem;
     font-weight: 500;
@@ -75,7 +77,7 @@
   }
   
   .voir-plus:hover {
-    color: var(--accent-color, #4f7ca3);
+    color: #4f7ca3;
   }
   
   /* Responsive */

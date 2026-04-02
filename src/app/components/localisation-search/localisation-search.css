@@ -15,7 +15,8 @@
  */
 .search-box {
   display: flex;
-  background: #e0e9f2;
+  background: rgba(224, 233, 242, 0.7);
+  backdrop-filter: blur(10px);
   border-radius: 50px; /* Bordure très arrondie pour un look moderne */
   overflow: hidden; /* Masque les débordements pour garder les coins arrondis */
   box-shadow: 0 10px 40px rgba(3, 17, 25, 0.2); /* Ombre portée pour effet de profondeur */
