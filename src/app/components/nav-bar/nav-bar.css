@@ -17,9 +17,9 @@
  * Appliqué quand l'utilisateur scroll au-delà de 50px
  */
 .header.scrolled {
-  background: rgba(26, 26, 46, 0.95); /* Fond semi-transparent */
+  background: rgba(3, 17, 25, 0.95); /* Fond semi-transparent */
   backdrop-filter: blur(10px); /* Effet de flou sur le contenu derrière */
-  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3); /* Ombre portée */
+  box-shadow: 0 2px 20px rgba(3, 17, 25, 0.3); /* Ombre portée */
 }
 
 .nav-logo {
@@ -63,7 +63,7 @@
  */
 .logo i {
   font-size: 1.8rem;
-  color: #a78bfa; /* Violet clair */
+  color: #4f7ca3; /* Bleu principal */
 }
 
 /*
@@ -119,7 +119,7 @@
   left: 0;
   right: 0;
   height: 2px;
-  background: #a78bfa; /* Violet clair */
+  background: #4f7ca3; /* Bleu principal */
   border-radius: 2px;
 }
 
@@ -168,7 +168,7 @@
     top: 70px; /* En dessous du header */
     left: 0;
     right: 0;
-    background: rgba(26, 26, 46, 0.98); /* Fond presque opaque */
+    background: rgba(3, 17, 25, 0.98); /* Fond presque opaque */
     padding: 2rem;
     transform: translateY(-100%); /* Caché au-dessus de l'écran */
     opacity: 0;

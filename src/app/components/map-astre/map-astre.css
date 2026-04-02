@@ -4,12 +4,12 @@
  */
 .map-astre {
     display: block; /* Lien en mode bloc pour occuper tout l'espace */
-    background: var(--surface-color, #ffffff);
+    background: var(--surface-color, #e0e9f2);
     border-radius: 12px;
     overflow: hidden; /* Cache les débordements  */
     text-decoration: none; /* Supprime le soulignement du lien */
     color: inherit; /* Hérite la couleur du parent */
-    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 15px rgba(3, 17, 25, 0.1);
     transition: transform 0.3s, box-shadow 0.3s; /* Transitions pour les effets hover */
   }
 
@@ -19,7 +19,7 @@
    */
   .map-astre:hover {
     transform: translateY(-5px); /* Élévation de 5px vers le haut */
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); /* Ombre plus marquée */
+    box-shadow: 0 10px 30px rgba(3, 17, 25, 0.15); /* Ombre plus marquée */
   }
 
   /*
@@ -63,7 +63,7 @@
     justify-content: center; /* Centre horizontalement */
     font-size: 3rem; /* Grande icône */
     color: #ccc; /* Couleur grise claire */
-    background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%); /* Dégradé gris */
+    background: #e0e9f2; /* Dégradé gris */
   }
 
   /*
@@ -82,7 +82,7 @@
     margin: 0 0 0.5rem; /* Marge inférieure pour espacer du paragraphe */
     font-size: 1.1rem;
     font-weight: 600; /* Texte en gras */
-    color: var(--heading-color, #1a1a2e);
+    color: var(--heading-color, #031119);
   }
 
   /*
@@ -91,6 +91,6 @@
    */
   .map-content p {
     margin: 0;
-    color: #666; /* Couleur grise pour le texte secondaire */
+    color: #4f7ca3; /* Couleur grise pour le texte secondaire */
     font-size: 0.9rem;
   }

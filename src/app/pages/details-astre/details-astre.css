@@ -15,7 +15,7 @@
   
   /* En-tête Astre */
   .astre-header {
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(224, 233, 242, 0.95);
     border-radius: 16px;
     padding: 2rem;
     display: flex;
@@ -40,7 +40,7 @@
   .astre-image .placeholder {
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
+    background: #e0e9f2;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -54,7 +54,7 @@
   
   .type-badge {
     display: inline-block;
-    background: var(--accent-color, #6366f1);
+    background: var(--accent-color, #4f7ca3);
     color: white;
     padding: 0.5rem 1rem;
     border-radius: 50px;
@@ -67,11 +67,11 @@
     margin: 0 0 1rem;
     font-size: 2.5rem;
     font-weight: 700;
-    color: #1a1a2e;
+    color: #031119;
   }
   
   .astre-infos > p {
-    color: #666;
+    color: #4f7ca3;
     line-height: 1.7;
     margin-bottom: 2rem;
   }
@@ -89,18 +89,18 @@
   
   .carac-item .label {
     font-size: 0.85rem;
-    color: #999;
+    color: #4f7ca3;
   }
   
   .carac-item .valeur {
     font-size: 1.1rem;
     font-weight: 600;
-    color: #1a1a2e;
+    color: #031119;
   }
   
   /* Bloc Villes */
   .bloc-villes {
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(224, 233, 242, 0.95);
     border-radius: 16px;
     padding: 2rem;
   }
@@ -109,7 +109,7 @@
     margin: 0 0 2rem;
     font-size: 1.25rem;
     font-weight: 600;
-    color: #1a1a2e;
+    color: #031119;
   }
   
   .grille-villes {
@@ -119,8 +119,8 @@
   }
   
   .carte-ville {
-    background: white;
-    border: 1px solid #eee;
+    background: #e0e9f2;
+    border: 1px solid #4f7ca3;
     border-radius: 12px;
     overflow: hidden;
     transition: transform 0.3s, box-shadow 0.3s;
@@ -128,7 +128,7 @@
   
   .carte-ville:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 30px rgba(3, 17, 25, 0.1);
   }
   
   .ville-image {
@@ -160,13 +160,13 @@
     margin: 0 0 0.25rem;
     font-size: 1.1rem;
     font-weight: 600;
-    color: #1a1a2e;
+    color: #031119;
   }
   
   .ville-content p {
     margin: 0;
     font-size: 0.9rem;
-    color: #666;
+    color: #4f7ca3;
   }
   
   /* Responsive */

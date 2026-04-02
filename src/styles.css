@@ -13,25 +13,25 @@ body {
   font-family: 'Inter', sans-serif;
   font-size: 16px;
   line-height: 1.6;
-  color: #1a1a2e;
-  background: #1a1a2e;
+  color: #031119;
+  background: #031119;
 }
 
 /* === VARIABLES CSS === */
 :root {
-  --primary-color: #6366f1;
-  --accent-color: #a78bfa;
-  --surface-color: #ffffff;
-  --heading-color: #1a1a2e;
-  --text-color: #666666;
-  --contrast-color: #ffffff;
+  --primary-color: #4f7ca3;
+  --accent-color: #4f7ca3;
+  --surface-color: #e0e9f2;
+  --heading-color: #031119;
+  --text-color: #4f7ca3;
+  --contrast-color: #e0e9f2;
   
-  --gradient-primary: linear-gradient(135deg, #6366f1 0%, #a78bfa 100%);
-  --gradient-dark: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  --gradient-primary: #031119;
+  --gradient-dark: #031119;
   
-  --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.1);
-  --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.15);
-  --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.2);
+  --shadow-sm: 0 2px 10px rgba(3, 17, 25, 0.15);
+  --shadow-md: 0 4px 20px rgba(3, 17, 25, 0.2);
+  --shadow-lg: 0 10px 40px rgba(3, 17, 25, 0.25);
   
   --radius-sm: 8px;
   --radius-md: 12px;
@@ -69,16 +69,16 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 ::-webkit-scrollbar-track {
-  background: #1a1a2e;
+  background: #031119;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #6366f1;
+  background: #4f7ca3;
   border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #a78bfa;
+  background: #e0e9f2;
 }
 
 /* === CLASSES UTILITAIRES === */

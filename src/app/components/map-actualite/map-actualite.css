@@ -3,7 +3,7 @@
  * Conteneur avec fond, ombre et coins arrondis
  */
 .post-item {
-    background: var(--surface-color, #ffffff); /* Couleur de fond du thème ou blanc par défaut */
+    background: var(--surface-color, #e0e9f2); /* Couleur de fond du thème */
     box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.1); /* Ombre portée douce */
     transition: 0.3s; /* Transition pour les effets hover */
     border-radius: 8px; /* Coins arrondis */
@@ -26,7 +26,7 @@
    * Badge coloré en haut à gauche de l'image
    */
   .post-date {
-    background-color: var(--accent-color, #6366f1); /* Couleur d'accent ou violet par défaut */
+    background-color: var(--accent-color, #4f7ca3); /* Couleur d'accent */
     color: white;
     position: absolute;
     top: 15px; /* Distance du haut de l'image */
@@ -51,7 +51,7 @@
    * Style du texte avec transition pour l'effet hover
    */
   .post-title {
-    color: var(--heading-color, #1a1a2e); /* Couleur de titre du thème ou noir bleuté par défaut */
+    color: var(--heading-color, #031119); /* Couleur de titre du thème */
     font-size: 18px;
     font-weight: 600;
     transition: 0.3s; /* Transition douce pour le changement de couleur au hover */
@@ -63,7 +63,7 @@
    * Lien stylisé avec icône et flexbox pour l'alignement
    */
   .readmore {
-    color: var(--accent-color, #6366f1);
+    color: var(--accent-color, #4f7ca3);
     display: flex;
     align-items: center; /* Centre verticalement le texte et l'icône */
     font-weight: 600;
@@ -86,7 +86,7 @@
    */
   .post-item:hover .post-title,
   .post-item:hover .readmore {
-    color: var(--accent-color, #6366f1);
+    color: var(--accent-color, #4f7ca3);
   }
 
   /*

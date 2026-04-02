@@ -15,10 +15,10 @@
  */
 .search-box {
   display: flex;
-  background: white;
+  background: #e0e9f2;
   border-radius: 50px; /* Bordure très arrondie pour un look moderne */
   overflow: hidden; /* Masque les débordements pour garder les coins arrondis */
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2); /* Ombre portée pour effet de profondeur */
+  box-shadow: 0 10px 40px rgba(3, 17, 25, 0.2); /* Ombre portée pour effet de profondeur */
 }
 
 /* Champ de saisie de la ville */
@@ -50,7 +50,7 @@
 
 /* Effet au survol du bouton de recherche */
 .search-box button:hover {
-  color: var(--accent-color, #6366f1); /* Utilise la couleur d'accent du thème ou violet par défaut */
+  color: var(--accent-color, #4f7ca3); /* Utilise la couleur d'accent du thème */
 }
 
 /*
@@ -62,7 +62,7 @@
   top: calc(100% + 0.5rem); /* Positionnée juste en dessous de la barre de recherche avec un petit espace */
   left: 0;
   right: 0;
-  background: white;
+  background: #e0e9f2;
   border-radius: 16px;
   list-style: none; /* Supprime les puces de liste */
   margin: 0;
@@ -88,5 +88,5 @@
 
 /* Icône de géolocalisation dans les suggestions */
 .suggestions li i {
-  color: var(--accent-color, #6366f1); /* Couleur d'accent pour l'icône */
+  color: var(--accent-color, #4f7ca3); /* Couleur d'accent pour l'icône */
 }

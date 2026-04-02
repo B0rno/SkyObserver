@@ -18,15 +18,15 @@
   }
   
   .hero h1 {
-    color: white;
+    color: #e0e9f2;
     font-size: 3.5rem;
     font-weight: 700;
     margin-bottom: 1rem;
-    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    text-shadow: 0 4px 20px rgba(3, 17, 25, 0.5);
   }
   
   .hero p {
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(224, 233, 242, 0.8);
     font-size: 1.2rem;
     margin-bottom: 2rem;
   }
@@ -43,7 +43,7 @@
   }
   
   .bloc-actualites {
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(224, 233, 242, 0.95);
     border-radius: 16px;
     padding: 1.5rem;
   }
@@ -58,7 +58,7 @@
   .bloc-header h2 {
     font-size: 1rem;
     font-weight: 600;
-    color: #333;
+    color: #031119;
     margin: 0;
     letter-spacing: 1px;
   }
@@ -67,7 +67,7 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    color: #666;
+    color: #4f7ca3;
     text-decoration: none;
     font-size: 0.85rem;
     font-weight: 500;
@@ -75,7 +75,7 @@
   }
   
   .voir-plus:hover {
-    color: var(--accent-color, #6366f1);
+    color: var(--accent-color, #4f7ca3);
   }
   
   /* Responsive */
