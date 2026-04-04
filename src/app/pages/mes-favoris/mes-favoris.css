@@ -2,12 +2,11 @@
 .favoris-container {
   min-height: 100vh;
   padding-top: 80px;
-  background: url('/assets/img/2ndbg.jpg') center/cover no-repeat fixed;
 }
 
 /* En-tête de la page */
 .page-header h1 {
-  color: #2c3e50;
+  color: #ffffff;
   font-weight: 700;
 }
 
@@ -17,7 +16,10 @@
 
 /* État vide */
 .empty-state {
-  background: white;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 2px solid rgba(255, 255, 255, 0.5);
   border-radius: 16px;
   padding: 3rem;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
@@ -28,13 +30,16 @@
 }
 
 .empty-state h3 {
-  color: #2c3e50;
+  color: #ffffff;
   font-weight: 600;
 }
 
 /* Carte de favori */
 .favorite-card {
-  background: white;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 2px solid rgba(255, 255, 255, 0.5);
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
@@ -88,7 +93,10 @@
 
 /* Statistiques */
 .stats-section {
-  background: white;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 2px solid rgba(255, 255, 255, 0.5);
   border-radius: 16px;
   padding: 2rem;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);

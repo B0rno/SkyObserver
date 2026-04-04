@@ -1,6 +1,5 @@
 .page-planetes-visibles {
   min-height: 100vh;
-  background: url('/assets/img/2ndbg.jpg') center/cover no-repeat fixed;
 }
 
 .section-content {
@@ -15,7 +14,10 @@
 
 /* En-tête ville */
 .header-ville {
-  background: rgba(224, 233, 242, 0.95);
+  background: rgba(224, 233, 242, 0.3);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 2px solid rgba(255, 255, 255, 0.5);
   border-radius: 16px;
   padding: 2rem;
   margin-bottom: 2rem;
@@ -26,7 +28,7 @@
   margin: 0 0 0.5rem;
   font-size: 2.5rem;
   font-weight: 700;
-  color: #031119;
+  color: #ffffff;
 }
 
 .coordonnees {
@@ -42,7 +44,10 @@
 
 /* Loading */
 .loading-container {
-  background: rgba(224, 233, 242, 0.95);
+  background: rgba(224, 233, 242, 0.3);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 2px solid rgba(255, 255, 255, 0.5);
   border-radius: 16px;
   padding: 4rem 2rem;
   text-align: center;
@@ -56,7 +61,10 @@
 
 /* Bloc planètes */
 .bloc-planetes {
-  background: rgba(224, 233, 242, 0.95);
+  background: rgba(224, 233, 242, 0.3);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 2px solid rgba(255, 255, 255, 0.5);
   border-radius: 16px;
   padding: 2rem;
   margin-bottom: 2rem;
@@ -66,7 +74,7 @@
   margin: 0 0 1.5rem;
   font-size: 1.5rem;
   font-weight: 600;
-  color: #031119;
+  color: #ffffff;
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -85,8 +93,10 @@
 
 /* Carte planète */
 .carte-planete {
-  background: #e0e9f2;
-  border: 2px solid #4f7ca3;
+  background: rgba(224, 233, 242, 0.25);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 2px solid rgba(255, 255, 255, 0.5);
   border-radius: 12px;
   padding: 1.5rem;
   transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
@@ -95,7 +105,7 @@
 .carte-planete:hover {
   transform: translateY(-5px);
   box-shadow: 0 10px 30px rgba(79, 124, 163, 0.2);
-  border-color: #031119;
+  border-color: #ffffff;
 }
 
 .planete-header {
@@ -111,7 +121,7 @@
   margin: 0;
   font-size: 1.5rem;
   font-weight: 700;
-  color: #031119;
+  color: #ffffff;
 }
 
 .badge {
@@ -160,14 +170,17 @@
 
 .info-item .value {
   font-size: 1rem;
-  color: #031119;
+  color: #ffffff;
   font-weight: 600;
   text-align: right;
 }
 
 /* Alerts */
 .alert {
-  background: rgba(224, 233, 242, 0.95);
+  background: rgba(224, 233, 242, 0.3);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 2px solid rgba(255, 255, 255, 0.5);
   border-radius: 12px;
   padding: 1.5rem;
   margin-bottom: 2rem;

@@ -1,6 +1,5 @@
 .page-details-astre {
     min-height: 100vh;
-    background: url('/assets/img/2ndbg.jpg') center/cover no-repeat fixed;
   }
   
   .section-content {
@@ -15,7 +14,10 @@
   
   /* En-tête Astre */
   .astre-header {
-    background: rgba(224, 233, 242, 0.95);
+    background: rgba(224, 233, 242, 0.3);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 2px solid rgba(255, 255, 255, 0.5);
     border-radius: 16px;
     padding: 2rem;
     display: flex;
@@ -67,7 +69,7 @@
     margin: 0 0 1rem;
     font-size: 2.5rem;
     font-weight: 700;
-    color: #031119;
+    color: #ffffff;
   }
   
   .astre-infos > p {
@@ -95,12 +97,15 @@
   .carac-item .valeur {
     font-size: 1.1rem;
     font-weight: 600;
-    color: #031119;
+    color: #ffffff;
   }
   
   /* Bloc Villes */
   .bloc-villes {
-    background: rgba(224, 233, 242, 0.95);
+    background: rgba(224, 233, 242, 0.3);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 2px solid rgba(255, 255, 255, 0.5);
     border-radius: 16px;
     padding: 2rem;
   }
@@ -109,7 +114,7 @@
     margin: 0 0 2rem;
     font-size: 1.25rem;
     font-weight: 600;
-    color: #031119;
+    color: #ffffff;
   }
   
   .grille-villes {
@@ -119,8 +124,10 @@
   }
   
   .carte-ville {
-    background: #e0e9f2;
-    border: 1px solid #4f7ca3;
+    background: rgba(224, 233, 242, 0.25);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 2px solid rgba(255, 255, 255, 0.5);
     border-radius: 12px;
     overflow: hidden;
     transition: transform 0.3s, box-shadow 0.3s;
@@ -160,7 +167,7 @@
     margin: 0 0 0.25rem;
     font-size: 1.1rem;
     font-weight: 600;
-    color: #031119;
+    color: #ffffff;
   }
   
   .ville-content p {

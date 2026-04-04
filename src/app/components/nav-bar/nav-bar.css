@@ -40,8 +40,10 @@
   display: grid;
   grid-template-columns: 1fr auto 1fr; /* Colonnes flexibles pour centrer la navigation */
   align-items: center; /* Alignement vertical centré */
-  background: rgba(224, 233, 242, 0.7);
-  backdrop-filter: blur(10px);
+  background: rgba(224, 233, 242, 0.3);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 2px solid rgba(255, 255, 255, 0.5);
   border-radius: 50px;
 }
 
@@ -54,7 +56,7 @@
   align-items: center;
   gap: 0.5rem; /* Espace entre l'icône et le texte */
   text-decoration: none; /* Supprime le soulignement du lien */
-  color: #031119;
+  color: #ffffff;
   font-size: 1.5rem;
   font-weight: 700; /* Texte en gras */
   justify-self: start; /* Aligné à gauche dans la grille */
@@ -94,7 +96,7 @@
  * Style avec effet hover et soulignement pour le lien actif
  */
 .nav-menu a {
-  color: #031119;
+  color: #ffffff;
   text-decoration: none;
   font-weight: 500;
   padding: 0.5rem 0;
@@ -240,7 +242,7 @@
  * Style simple avec bordure
  */
 .btn-login {
-  color: #031119;
+  color: #ffffff;
   text-decoration: none;
   padding: 0.5rem 1.2rem;
   border: 1px solid rgba(51, 51, 51, 0.3);
@@ -287,7 +289,7 @@
  * Nom d'utilisateur affiché
  */
 .username {
-  color: #031119;
+  color: #ffffff;
   font-weight: 500;
   padding: 0.5rem 1rem;
   background: rgba(79, 124, 163, 0.1);
@@ -298,7 +300,7 @@
  * Bouton de déconnexion
  */
 .btn-logout {
-  color: #333;
+  color: #ffffff;
   background: transparent;
   border: 1px solid rgba(51, 51, 51, 0.3);
   padding: 0.5rem 1.2rem;

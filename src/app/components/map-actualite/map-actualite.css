@@ -3,7 +3,10 @@
  * Conteneur avec fond, ombre et coins arrondis
  */
 .post-item {
-    background: var(--surface-color, #e0e9f2); /* Couleur de fond du thème */
+    background: rgba(224, 233, 242, 0.3); /* Fond transparent */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 2px solid rgba(255, 255, 255, 0.5);
     box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.1); /* Ombre portée douce */
     transition: 0.3s; /* Transition pour les effets hover */
     border-radius: 8px; /* Coins arrondis */
@@ -63,7 +66,7 @@
    * Lien stylisé avec icône et flexbox pour l'alignement
    */
   .readmore {
-    color: #031119;
+    color: #ffffff;
     display: flex;
     align-items: center; /* Centre verticalement le texte et l'icône */
     font-weight: 600;

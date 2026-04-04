@@ -8,13 +8,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: url('/assets/img/2ndbg.jpg') center/cover no-repeat fixed;
   padding: 20px;
 }
 
 /* Carte de connexion */
 .login-card {
-  background: white;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 2px solid rgba(255, 255, 255, 0.5);
   border-radius: 12px;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
   padding: 40px;
@@ -25,7 +27,7 @@
 /* Titre principal */
 .login-card h1 {
   font-weight: 700;
-  color: #333;
+  color: #ffffff;
 }
 
 /* Sous-titre */

@@ -10,7 +10,11 @@
     justify-content: center;
     text-align: center;
     padding: 120px 2rem 2rem;
-    background: #000000;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 16px;
+    margin: 1rem 2rem;
   }
   
   .hero-content {
@@ -34,7 +38,6 @@
   /* Section Bottom */
   .section-bottom {
     padding: 2rem 0 4rem;
-    background: url('/assets/img/940.jpg') center/cover no-repeat fixed;
   }
   
   .container {
@@ -44,8 +47,10 @@
   }
   
   .bloc-actualites {
-    background: rgba(224, 233, 242, 0.7);
-    backdrop-filter: blur(10px);
+    background: rgba(224, 233, 242, 0.3);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 2px solid rgba(255, 255, 255, 0.5);
     border-radius: 16px;
     padding: 1.5rem;
   }
@@ -60,7 +65,7 @@
   .bloc-header h2 {
     font-size: 1rem;
     font-weight: 600;
-    color: #031119;
+    color: #ffffff;
     margin: 0;
     letter-spacing: 1px;
   }
@@ -69,7 +74,7 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    color: #031119;
+    color: #ffffff;
     text-decoration: none;
     font-size: 0.85rem;
     font-weight: 500;

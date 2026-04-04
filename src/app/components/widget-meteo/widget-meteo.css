@@ -3,8 +3,10 @@
  * Carte avec fond, ombre et coins arrondis
  */
 .widget-meteo {
-    background: rgba(224, 233, 242, 0.7);
-    backdrop-filter: blur(10px);
+    background: rgba(224, 233, 242, 0.3);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 2px solid rgba(255, 255, 255, 0.5);
     border-radius: 12px;
     padding: 1.5rem;
     box-shadow: 0 2px 15px rgba(3, 17, 25, 0.1); /* Ombre portée douce */
@@ -18,7 +20,7 @@
     margin: 0 0 1rem;
     font-size: 0.85rem;
     font-weight: 600;
-    color: #031119;
+    color: #ffffff;
     letter-spacing: 1px; /* Espacement des lettres pour un effet élégant */
   }
 
@@ -80,7 +82,7 @@
    * Texte plus petit sous la température
    */
   .condition {
-    color: #031119;
+    color: #ffffff;
     font-size: 1rem;
   }
 
