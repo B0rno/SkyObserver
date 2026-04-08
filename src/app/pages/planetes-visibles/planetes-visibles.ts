@@ -4,6 +4,9 @@ import { CommonModule } from '@angular/common';
 import { NavBarComponent } from '../../components/nav-bar/nav-bar';
 import { GeocodingService, Coordonnees } from '../../services/geocoding.service';
 import { AstronomyService, PlaneteVisible } from '../../services/astronomy.service';
+import { WidgetMeteo } from '../../components/widget-meteo/widget-meteo';
+import { MeteoService, MeteoData } from '../../services/meteo.service';
+
 
 /**
  * Page d'affichage des planètes visibles
@@ -22,7 +25,7 @@ import { AstronomyService, PlaneteVisible } from '../../services/astronomy.servi
 @Component({
   selector: 'app-planetes-visibles',
   standalone: true,
-  imports: [CommonModule, NavBarComponent, RouterLink],
+  imports: [CommonModule, NavBarComponent, RouterLink, WidgetMeteo],
   templateUrl: './planetes-visibles.html',
   styleUrl: './planetes-visibles.css',
 })
@@ -50,11 +53,13 @@ export class PlanetesVisibles implements OnInit {
 
   /**
    * @param route - Service pour accéder aux paramètres de la route
+    * @param meteoService - Service pour récupérer les données météo
    * @param geocodingService - Service pour convertir une ville en coordonnées GPS
    * @param astronomyService - Service pour calculer la visibilité des planètes
    */
   constructor(
     private route: ActivatedRoute,
+    private meteoService: MeteoService,
     private geocodingService: GeocodingService,
     private astronomyService: AstronomyService
   ) {}
@@ -75,6 +80,7 @@ export class PlanetesVisibles implements OnInit {
         this.loading.set(false);
       }
     });
+    this.chargerMeteo(this.ville());
   }
 
   /**
@@ -145,5 +151,46 @@ export class PlanetesVisibles implements OnInit {
    */
   formatIdURL(nom: string): string {
     return nom.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+  }
+
+    /**
+   * Données météo actuelles
+   * Initialisées avec des valeurs par défaut
+   */
+  meteo: MeteoData = {
+    temperature: 0,
+    icone: 'bi-hourglass',
+    condition : '',
+    bonneCondition: false
+  };
+
+  /** Nom de la ville pour laquelle afficher la météo (même que villeActuelle) */
+  villeActuelle: string = this.ville() || 'Le Mans ';
+
+
+  /**
+   * Charge les données météo pour une ville donnée
+   * Affiche un état de chargement pendant la requête
+   *
+   * @param ville - Nom de la ville pour laquelle récupérer la météo
+   */
+  chargerMeteo(ville: string) {
+    // Afficher un état de chargement
+    this.meteo.condition = 'Recherche en cours...';
+    this.meteo.icone = 'bi-hourglass-split';
+
+    // Appel API pour récupérer la météo
+    this.meteoService.getMeteoParVille(ville).subscribe({
+      next: (donneesReelles) => {
+        this.meteo = donneesReelles;
+        this.villeActuelle = ville;
+      },
+      error: (erreur) => {
+        console.error('Erreur météo', erreur);
+        // Afficher un message d'erreur si la ville n'est pas trouvée
+        this.meteo.condition = 'Ville introuvable';
+        this.meteo.icone = 'bi-x-circle';
+      }
+    });
   }
 }
