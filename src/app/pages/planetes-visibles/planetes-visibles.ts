@@ -1,4 +1,4 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, OnInit, signal, ChangeDetectorRef} from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { NavBarComponent } from '../../components/nav-bar/nav-bar';
@@ -61,7 +61,8 @@ export class PlanetesVisibles implements OnInit {
     private route: ActivatedRoute,
     private meteoService: MeteoService,
     private geocodingService: GeocodingService,
-    private astronomyService: AstronomyService
+    private astronomyService: AstronomyService,
+    private cdr: ChangeDetectorRef
   ) {}
 
   /**
@@ -76,12 +77,12 @@ export class PlanetesVisibles implements OnInit {
         this.ville.set(villeParam);
         localStorage.setItem('derniere_ville', villeParam);
         this.chargerPlanetes(villeParam);
+        this.chargerMeteo(villeParam);
       } else {
         this.error.set('Aucune ville spécifiée');
         this.loading.set(false);
       }
     });
-    this.chargerMeteo(this.ville());
   }
 
   /**
@@ -185,12 +186,14 @@ export class PlanetesVisibles implements OnInit {
       next: (donneesReelles) => {
         this.meteo = donneesReelles;
         this.villeActuelle = ville;
+        this.cdr.detectChanges(); // Forcer la détection de changement pour mettre à jour le widget météo
       },
       error: (erreur) => {
         console.error('Erreur météo', erreur);
         // Afficher un message d'erreur si la ville n'est pas trouvée
         this.meteo.condition = 'Ville introuvable';
         this.meteo.icone = 'bi-x-circle';
+        this.cdr.detectChanges();
       }
     });
   }

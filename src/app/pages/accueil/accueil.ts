@@ -97,12 +97,13 @@ export class Accueil implements OnInit {
       next: (donneesReelles) => {
         this.meteo = donneesReelles;
         this.villeActuelle = ville;
+        this.cdr.detectChanges();
       },
       error: (erreur) => {
         console.error('Erreur météo', erreur);
-        // Afficher un message d'erreur si la ville n'est pas trouvée
         this.meteo.condition = 'Ville introuvable';
         this.meteo.icone = 'bi-x-circle';
+        this.cdr.detectChanges();
       }
     });
   }
