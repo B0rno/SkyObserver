@@ -64,7 +64,10 @@ export class Accueil implements OnInit {
    */
   ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {
-      // Charger la météo pour la ville par défaut (Le Mans)
+      const derniereVille = localStorage.getItem('derniere_ville');
+      if (derniereVille) {
+        this.villeActuelle = derniereVille;
+      }
       this.chargerMeteo(this.villeActuelle);
 
       // Récupérer les 4 dernières actualités pour l'aperçu sur l'accueil

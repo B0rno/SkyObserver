@@ -74,6 +74,7 @@ export class PlanetesVisibles implements OnInit {
       const villeParam = params['ville'];
       if (villeParam) {
         this.ville.set(villeParam);
+        localStorage.setItem('derniere_ville', villeParam);
         this.chargerPlanetes(villeParam);
       } else {
         this.error.set('Aucune ville spécifiée');
