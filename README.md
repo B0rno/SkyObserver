@@ -270,9 +270,11 @@ Le frontend démarre sur **http://localhost:4200**
 - Recherchez une ville pour voir la météo
 - Consultez les 4 dernières actualités spatiales
 - Cliquez sur "Voir plus" pour accéder à toutes les actualités
+- Un widget est affiché pour conusulter l'état de la météo
 
 ### 2. **Planètes visibles** (`/planetes-visibles`)
 - Entrez votre ville
+- Un widget est affiché pour conusulter l'état de la météo
 - L'application calcule automatiquement les planètes observables
 - Sépare les planètes visibles à l'œil nu de celles nécessitant un télescope
 - Cliquez sur une planète pour plus de détails
